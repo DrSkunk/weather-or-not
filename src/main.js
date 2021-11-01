@@ -1,13 +1,10 @@
 import { createApp } from "vue";
-import { createI18n } from "vue-i18n";
-import messages from "@intlify/vite-plugin-vue-i18n/messages";
+import store from "./store";
 import App from "./App.vue";
+import { i18n } from "./i18n";
 import "./index.css";
 
 const app = createApp(App);
-const i18n = createI18n({
-  locale: "en",
-  globalInjection: true,
-  messages,
-});
-app.use(i18n).mount("#app");
+app.use(i18n);
+app.use(store);
+app.mount("#app");

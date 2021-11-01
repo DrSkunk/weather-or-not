@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-row sm:flex-col py-4 mx-4 text-white">
     <div class="text-left">
-      <div>{{ dayName }}</div>
-      <div class="font-thin">{{ main }}</div>
+      <div>{{ $d(day, "dayShort") }}</div>
+      <div class="font-thin">{{ description }}</div>
     </div>
     <div><img :src="`https://openweathermap.org/img/wn/${icon}@2x.png`" /></div>
-    <div class="grid grid-cols-2 gap-2 ml-auto text-xl">
+    <div class="grid grid-cols-2 w-20 gap-2 ml-auto text-xl">
       <div class="">{{ maximumTemperatureLocalised }}°</div>
       <div class="font-thin">{{ minimumTemperatureLocalised }}°</div>
       <img
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import { shortWeekDaysArray } from "../api/i18n";
 import {
   degreeToWindDirection,
   kelvinToCelsius,
@@ -33,7 +32,7 @@ export default {
       type: Date,
       required: true,
     },
-    main: {
+    description: {
       type: String,
       required: true,
     },
@@ -59,9 +58,7 @@ export default {
     },
   },
   data() {
-    console.log(this.day);
     return {
-      dayName: shortWeekDaysArray[this.day.getDay()],
       minimumTemperatureLocalised: kelvinToCelsius(this.minimumTemperature),
       maximumTemperatureLocalised: kelvinToCelsius(this.maximumTemperature),
       beaufort: msToBeaufort(this.windSpeed),

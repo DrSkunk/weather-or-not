@@ -1,3 +1,5 @@
+import { useI18n } from "vue-i18n";
+
 /**
  * Converts speed in meters per second to beaufort scale
  * {@link https://stackoverflow.com/a/60001992 Source on Stackoverflow}
@@ -35,23 +37,24 @@ export function kelvinToFahrenheit(kelvin) {
  */
 export function degreeToWindDirection(degree) {
   const val = Math.round(degree / 22.5);
+  const { t } = useI18n();
   const directions = [
-    "N",
-    "NNE",
-    "NE",
-    "ENE",
-    "E",
-    "ESE",
-    "SE",
-    "SSE",
-    "S",
-    "SSW",
-    "SW",
-    "WSW",
-    "W",
-    "WNW",
-    "NW",
-    "NNW",
-  ];
+    "north",
+    "northNorthEast",
+    "northEast",
+    "eastNorthEast",
+    "east",
+    "eastSouthEast",
+    "southEast",
+    "southSouthEast",
+    "south",
+    "southSouthWest",
+    "southWest",
+    "westSouthWest",
+    "west",
+    "westNorthWest",
+    "northWest",
+    "northNorthWest",
+  ].map((dir) => t(`windDirection.${dir}`));
   return directions[val % 16];
 }

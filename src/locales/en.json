@@ -1,3 +1,23 @@
 {
-  "hello": "hello world2"
+  "windDirection": {
+    "north": "N",
+    "northNorthEast": "NNE",
+    "northEast": "NE",
+    "eastNorthEast": "ENE",
+    "east": "E",
+    "eastSouthEast": "ESE",
+    "southEast": "SE",
+    "southSouthEast": "SSE",
+    "south": "S",
+    "southSouthWest": "SSW",
+    "southWest": "SW",
+    "westSouthWest": "WSW",
+    "west": "W",
+    "westNorthWest": "WNW",
+    "northWest": "NW",
+    "northNorthWest": "NNW"
+  },
+  "openweathermap": {
+    "lang": "en"
+  }
 }

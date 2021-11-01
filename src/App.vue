@@ -1,11 +1,15 @@
 <script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-import LanguageSelector from "./components/LanguageSelector.vue";
+import WeatherInfo from "./components/WeatherInfo.vue";
+import Counter from "./components/Counter.vue";
+import LocationInput from "./components/LocationInput.vue";
+import Map from "./components/Map.vue";
 </script>
 
 <template>
   <div>
-    <HelloWorld msg="Hello Vue 3 + Vite" />
-    <LanguageSelector />
+    <!-- <WeatherInfo /> -->
+    <!-- <Counter /> -->
+    <!-- <LocationInput /> -->
+    <Map />
   </div>
 </template>

@@ -1,3 +1,23 @@
 {
-  "hello": "hallo"
+  "windDirection": {
+    "north": "N",
+    "northNorthEast": "NNO",
+    "northEast": "NO",
+    "eastNorthEast": "ONO",
+    "east": "O",
+    "eastSouthEast": "OZO",
+    "southEast": "ZO",
+    "southSouthEast": "ZZO",
+    "south": "Z",
+    "southSouthWest": "ZZW",
+    "southWest": "ZW",
+    "westSouthWest": "WZW",
+    "west": "W",
+    "westNorthWest": "WNW",
+    "northWest": "NW",
+    "northNorthWest": "NNW"
+  },
+  "openweathermap": {
+    "lang": "nl"
+  }
 }

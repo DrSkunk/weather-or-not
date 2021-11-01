@@ -12,7 +12,6 @@
         {{ name }}
       </li>
     </ul>
-    {{ $t("hello") }}
   </div>
 </template>
 
