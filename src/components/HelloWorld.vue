@@ -17,6 +17,8 @@
       :description="weatherInfo.current.weather[0].description"
     /> -->
     <!-- <WeatherInfoBig /> -->
+    {{ $t("hello") }}
+    <button v-on:click="setLanguage">Greet</button>
     <div
       class="
         grid grid-cols-1
@@ -45,6 +47,7 @@
 </template>
 
 <script>
+// import { useI18n } from "vue-i18n";
 import { oneCall } from "../api/weather";
 import WeatherIcon from "./WeatherIcon.vue";
 import WeatherInfoBig from "./WeatherInfoBig.vue";
@@ -71,5 +74,10 @@ export default {
     }
   },
   components: { WeatherIcon, WeatherInfoBig, WeatherInfoSmall },
+  methods: {
+    setLanguage() {
+      this.$i18n.locale = "nl";
+    },
+  },
 };
 </script>
