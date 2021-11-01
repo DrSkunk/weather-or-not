@@ -1,0 +1,22 @@
+{
+  "name": "weather-or-not",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@heroicons/vue": "^1.0.5",
+    "axios": "^0.24.0",
+    "date-fns": "^2.25.0",
+    "vue": "^3.2.16"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "autoprefixer": "^10.3.7",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.17",
+    "vite": "^2.6.4"
+  }
+}
