@@ -2,8 +2,9 @@ import { createStore } from "vuex";
 
 const state = {
   location: {
-    lat: null,
-    lng: null,
+    longitude: 30,
+    latitude: 50,
+    accuracy: 15,
   },
   count: 0,
   history: [],

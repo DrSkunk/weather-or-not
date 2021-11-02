@@ -1,39 +1,66 @@
 <template>
-  {{ location.latitude }}
-  <div id="map" class="h-screen w-screen" />
+  <div id="map" class="h-full w-full" />
 </template>
 
 <script>
-import { onMounted, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { mapboxToken } from "../api/config";
+import { defaultZoomLevel, mapboxToken } from "../api/config";
 
 export default {
   setup() {
+    const store = useStore();
+    const location = computed(() => store.state.location);
+    const map = ref(null);
+    const marker = ref(null);
+
     onMounted(() => {
       mapboxgl.accessToken = mapboxToken;
-      const map = new mapboxgl.Map({
+
+      map.value = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/light-v9",
       });
-      map.on("load", () => {
-        // Add an image to use as a custom marker
-        map.loadImage(
-          "https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png",
-          (error, image) => {
-            if (error) throw error;
-            map.addImage("custom-marker", image);
-          }
-        );
+
+      map.value.on("load", () => {
+        // Check if all location values are set
+        if (Object.values(location.value).some((val) => !!val)) {
+          const { longitude, latitude } = location.value;
+          const coordinates = [longitude, latitude];
+          map.value.flyTo({ center: coordinates, zoom: defaultZoomLevel });
+          marker.value = new mapboxgl.Marker()
+            .setLngLat(coordinates)
+            .addTo(map.value);
+        }
       });
     });
 
-    const store = useStore();
     return {
-      location: computed(() => store.state.location),
+      location,
+      map,
+      marker,
     };
+  },
+  watch: {
+    location: function (location) {
+      const { longitude, latitude, zoom } = location;
+      const coordinates = [longitude, latitude];
+      console.log(coordinates, zoom);
+      if (this.marker) {
+        this.marker.setLngLat(coordinates);
+      } else {
+        this.marker = new mapboxgl.Marker()
+          .setLngLat(coordinates)
+          .addTo(this.map);
+      }
+
+      this.map.flyTo({
+        center: coordinates,
+        zoom: defaultZoomLevel,
+      });
+    },
   },
 };
 </script>

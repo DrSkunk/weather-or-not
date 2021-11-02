@@ -17,8 +17,8 @@ export default {
     const store = useStore();
     navigator.geolocation.getCurrentPosition((pos) => {
       console.log(pos);
-      const { latitude, longitude } = pos.coords;
-      store.dispatch("setLocation", { latitude, longitude });
+      const { latitude, longitude, accuracy } = pos.coords;
+      store.dispatch("setLocation", { latitude, longitude, accuracy });
     });
   },
   setup() {

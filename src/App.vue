@@ -9,7 +9,9 @@ import Map from "./components/Map.vue";
   <div>
     <!-- <WeatherInfo /> -->
     <!-- <Counter /> -->
-    <!-- <LocationInput /> -->
-    <Map />
+    <LocationInput />
+    <div class="h-96">
+      <Map />
+    </div>
   </div>
 </template>
