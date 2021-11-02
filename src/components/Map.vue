@@ -29,7 +29,7 @@ export default {
         if (Object.values(location.value).some((val) => !!val)) {
           const { longitude, latitude } = location.value;
           const coordinates = [longitude, latitude];
-          map.value.flyTo({ center: coordinates, zoom: defaultZoomLevel });
+          map.value.flyTo({ center: coordinates, zoom: 15 });
           marker.value = new mapboxgl.Marker()
             .setLngLat(coordinates)
             .addTo(map.value);

@@ -30,6 +30,7 @@ export async function search(text) {
   if (data.features.length === 0) {
     return [];
   }
+  console.log(data.features);
   const locations = data.features.map(({ place_name, center }) => ({
     name: place_name,
     coordinates: { longitude: center[0], latitude: center[1] },

@@ -14,12 +14,6 @@ const getters = {
   locationName: (state) => state.locationName,
   hasLocation: (state) => Object.values(state.location).some((val) => !!val),
   locale: (state) => state.locale,
-  // count: (state) => state.count,
-  // recentHistory: (state) => {
-  //   const end = state.history.length;
-  //   const begin = end - limit < 0 ? 0 : end - limit;
-  //   return state.history.slice(begin, end).join(", ");
-  // },
 };
 
 const actions = {

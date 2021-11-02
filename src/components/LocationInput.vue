@@ -1,19 +1,44 @@
 <template>
   <div v-if="location">
-    Your location data is {{ location.latitude }}, {{ location.longitude }}
-    <div>{{ locationName }}</div>
-    <input
-      v-model="locationName"
-      type="text"
-      placeholder="edit me"
-      class="border"
-    />
-    {{ locationName }}
-    <ul>
-      <li v-for="result in this.results" @click="setLocation(result)">
-        {{ JSON.stringify(result) }}
-      </li>
-    </ul>
+    <div class="relative">
+      <input
+        v-model="locationName"
+        v-on:keydown.arrow-up="selectPreviousResult"
+        v-on:keydown.arrow-down="selectNextResult"
+        v-on:keydown.enter="selectResult"
+        type="text"
+        placeholder="Where are you?"
+        class="border w-56 h-8 rounded"
+      />
+      <ul
+        v-if="results.length > 0"
+        class="
+          absolute
+          flex flex-col
+          top-10
+          rounded
+          z-10
+          bg-white
+          border
+          w-56
+          divide-y
+          cursor-pointer
+        "
+      >
+        <li
+          v-for="(result, index) in this.results"
+          :key="result.name"
+          :class="[
+            'p-2 hover:bg-blue-50',
+            index === selectedResult && 'bg-blue-200',
+          ]"
+          @click="setLocation(result)"
+        >
+          <div>{{ result.title }}</div>
+          <div class="text-sm">{{ result.address }}</div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -25,6 +50,11 @@ import {
   getNameFromPosition,
   search,
 } from "../api/location";
+
+function truncate(text) {
+  const length = 30;
+  return text.length > length ? text.substring(0, length) + "..." : text;
+}
 
 export default {
   async created() {
@@ -41,6 +71,8 @@ export default {
       const name = await getNameFromPosition(store.state.location);
       if (name) {
         store.dispatch("setLocationName", name);
+        this.shouldSearch = false;
+        this.locationName = name;
       }
     });
 
@@ -65,6 +97,8 @@ export default {
     return {
       locationName: "",
       results: [],
+      selectedResult: -1,
+      shouldSearch: true,
     };
   },
   methods: {
@@ -72,19 +106,51 @@ export default {
       console.log("setLocation", coordinates, name);
       this.$store.dispatch("setLocation", coordinates);
       this.$store.dispatch("setLocationName", name);
-      // this.locationName = name;
-      // this.location = coordinates;
+      this.results = [];
+      this.locationName = name;
+      this.shouldSearch = false;
+    },
+    selectPreviousResult() {
+      if (this.results.length === 0) {
+        this.selectedResult = -1;
+        return;
+      }
+      if (this.selectedResult === 0) {
+        this.selectedResult = this.results.length - 1;
+      } else {
+        this.selectedResult--;
+      }
+    },
+    selectNextResult() {
+      if (this.results.length === 0) {
+        this.selectedResult = -1;
+        return;
+      }
+      this.selectedResult = (this.selectedResult + 1) % this.results.length;
+      console.log("onArrowDown");
+    },
+    selectResult() {
+      if (this.results.length === 0) {
+        return;
+      }
+      this.setLocation(this.results[this.selectedResult]);
     },
   },
   watch: {
     locationName: async function (query) {
-      if (query.length === 0) {
+      if (query.length === 0 || !this.shouldSearch) {
+        this.shouldSearch = true;
         return;
       }
-      console.log("query", query);
-      const results = await search(query);
-      console.log("results", results);
-      this.results = results;
+      this.results = (await search(query)).map(({ name, coordinates }) => {
+        const [title, ...address] = name.split(",");
+        return {
+          name,
+          title,
+          address: truncate(address.join(",")),
+          coordinates,
+        };
+      });
     },
   },
 };

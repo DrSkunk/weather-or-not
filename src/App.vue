@@ -10,7 +10,7 @@ import LanguageSelector from "./components/LanguageSelector.vue";
   <main class="container mx-auto">
     <!-- <WeatherInfo /> -->
     <!-- <Counter /> -->
-    <LanguageSelector />
+    <!-- <LanguageSelector /> -->
     <LocationInput />
     <div class="h-96">
       <Map />
