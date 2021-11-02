@@ -22,18 +22,18 @@ export default {
       languages: [
         {
           name: "English",
-          code: "en",
+          code: "en-US",
         },
         {
           name: "Nederlands",
-          code: "nl",
+          code: "nl-BE",
         },
       ],
     };
   },
   methods: {
     changeLanguage(language) {
-      this.$i18n.locale = language;
+      this.$store.commit("setLocale", language);
     },
   },
 };

@@ -47,7 +47,6 @@ export default {
     location: function (location) {
       const { longitude, latitude, zoom } = location;
       const coordinates = [longitude, latitude];
-      console.log(coordinates, zoom);
       if (this.marker) {
         this.marker.setLngLat(coordinates);
       } else {

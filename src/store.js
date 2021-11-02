@@ -2,45 +2,35 @@ import { createStore } from "vuex";
 
 const state = {
   location: {
-    longitude: 30,
-    latitude: 50,
-    accuracy: 15,
+    longitude: null,
+    latitude: null,
   },
-  count: 0,
-  history: [],
+  locationName: "",
+  locale: "en-US",
 };
-const limit = 5;
+
 const getters = {
   location: (state) => state.location,
-  count: (state) => state.count,
-  recentHistory: (state) => {
-    const end = state.history.length;
-    const begin = end - limit < 0 ? 0 : end - limit;
-    return state.history.slice(begin, end).join(", ");
-  },
+  locationName: (state) => state.locationName,
+  hasLocation: (state) => Object.values(state.location).some((val) => !!val),
+  locale: (state) => state.locale,
+  // count: (state) => state.count,
+  // recentHistory: (state) => {
+  //   const end = state.history.length;
+  //   const begin = end - limit < 0 ? 0 : end - limit;
+  //   return state.history.slice(begin, end).join(", ");
+  // },
 };
 
 const actions = {
   setLocation({ commit }, location) {
     commit("setLocation", location);
   },
-  increment: ({ commit }) => {
-    commit("increment");
+  setLocationName({ commit }, locationName) {
+    commit("setLocationName", locationName);
   },
-  decrement: ({ commit }) => {
-    commit("decrement");
-  },
-
-  incrementIfOdd: ({ commit, state }) => {
-    if ((state.count + 1) % 2 === 0) {
-      commit("increment");
-    }
-  },
-
-  incrementAsync: ({ commit }) => {
-    setTimeout(() => {
-      commit("increment");
-    }, 1000);
+  setLocale({ commit }, locale) {
+    commit("setLocale", locale);
   },
 };
 
@@ -48,14 +38,11 @@ const mutations = {
   setLocation: (state, location) => {
     state.location = location;
   },
-  increment: (state) => {
-    state.count++;
-    state.history.push("increment");
+  setLocationName: (state, locationName) => {
+    state.locationName = locationName;
   },
-
-  decrement: (state) => {
-    state.count--;
-    state.history.push("decrement");
+  setLocale: (state, locale) => {
+    state.locale = locale;
   },
 };
 

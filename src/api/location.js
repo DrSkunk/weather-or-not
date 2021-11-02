@@ -1,26 +1,58 @@
 import axios from "axios";
-import { mapboxToken } from "./config";
+import { defaultSearchLimit, mapboxToken } from "./config";
+import store from "../store";
 
 const baseUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 
-export async function getLocationName(location) {
-  const { latitude, longitude } = getLocation();
+export async function getNameFromPosition(location) {
+  const { latitude, longitude } = location;
 
+  const data = await doRequest(`${longitude},${latitude}`);
+  if (data.features.length === 0) {
+    return null;
+  }
+  return data.features[0].context[1].text;
+}
+
+export async function getPositionFromName(location) {
+  const data = await doRequest(location);
+  if (data.features.length === 0) {
+    return null;
+  }
+  const [longitude, latitude] = data.features[0].center;
+  return { longitude, latitude };
+}
+
+export async function search(text) {
+  console.log("s");
+  const data = await doRequest(text, defaultSearchLimit);
+  console.log(data);
+  if (data.features.length === 0) {
+    return [];
+  }
+  const locations = data.features.map(({ place_name, center }) => ({
+    name: place_name,
+    coordinates: { longitude: center[0], latitude: center[1] },
+  }));
+  return locations;
+}
+
+async function doRequest(queryParams, limit = 1) {
   const data = {
-    // limit:1,
+    limit,
     access_token: mapboxToken,
+    language: store.getters.locale,
   };
 
-  const params = new URLSearchParams(data);
-  //   axios.get(
-  //     "https://api.mapbox.com/geocoding/v5/mapbox.places/4.672024652546668,50.913224452359685.json?limit=1&access_token=pk.eyJ1IjoiZHJza3VuayIsImEiOiJja3ZndW4xYmQwM2FkMnZuMG9rY3ozeXFyIn0.eJOp4rEskG_p-HoUdOgYAQ"
-  //   );
-  const endpoint = `${baseUrl}${latitude},${longitude}.json?${params.toString()}`;
+  const query = Array.isArray(queryParams)
+    ? queryParams.join(",")
+    : queryParams;
 
+  const params = new URLSearchParams(data);
+  const endpoint = `${baseUrl}${query}.json?${params.toString()}`;
+  console.log(endpoint);
   try {
     const { data } = await axios.get(endpoint);
-    console.log(data);
-
     return data;
   } catch (error) {
     console.error(error);
