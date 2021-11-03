@@ -1,16 +1,29 @@
 <template>
   <div>
-    <!-- <pre class="text-left">
-    {{ JSON.stringify(weatherInfo.daily[0], null, 8) }}
-    </pre> -->
-    <div v-if="!weatherInfo">Loading</div>
+    <div class="h-64">
+      <div v-if="loading">loading</div>
+      <WeatherInfoBig
+        v-if="!loading && weatherInfo.current"
+        :date="weatherInfo.current.date"
+        :description="weatherInfo.current.description"
+        :icon="weatherInfo.current.icon"
+        :temperature="weatherInfo.current.temperature"
+        :minimumTemperature="weatherInfo.current.minimumTemperature"
+        :maximumTemperature="weatherInfo.current.maximumTemperature"
+        :sunrise="weatherInfo.current.sunrise"
+        :sunset="weatherInfo.current.sunset"
+        :humidity="weatherInfo.current.humidity"
+        :windDegree="weatherInfo.current.windDegree"
+        :windSpeed="weatherInfo.current.windSpeed"
+      />
+    </div>
     <div
-      v-else
+      v-if="!loading && weatherInfo.daily"
       class="
         grid grid-cols-1
         sm:grid-cols-7
         gap-2
-        bg-gray-300
+        bg-gray-300 bg-opacity-50 bg-blur
         sm:divide-y-0
         divide-y-2
         rotate-[360deg]
@@ -18,7 +31,7 @@
     >
       <WeatherInfoSmall
         v-for="day in weatherInfo.daily"
-        :day="new Date(day.dt * 1000)"
+        :day="day.date"
         :description="day.weather[0].description"
         :icon="day.weather[0].icon"
         :minimumTemperature="day.temp.min"
@@ -31,25 +44,36 @@
 </template>
 
 <script>
+import { computed, ref } from "@vue/reactivity";
+import { watchEffect } from "@vue/runtime-core";
+import { useStore } from "vuex";
 import { oneCall } from "../api/weather";
 import WeatherIcon from "./WeatherIcon.vue";
 import WeatherInfoBig from "./WeatherInfoBig.vue";
 import WeatherInfoSmall from "./WeatherInfoSmall.vue";
 
 export default {
-  data() {
+  setup() {
+    const store = useStore();
+    const loading = ref(false);
+    const weatherInfo = ref({ current: null, daily: null });
+
+    watchEffect(async () => {
+      if (store.getters.hasLocation) {
+        loading.value = true;
+        const data = await oneCall(store.getters.location);
+        weatherInfo.value = data;
+        console.log(data);
+        console.log(weatherInfo.value.current);
+        loading.value = false;
+      }
+    });
+
     return {
-      posts: [],
-      errors: [],
-      weatherInfo: undefined,
+      weatherInfo,
+      loading,
+      location: computed(() => store.state.location),
     };
-  },
-  async created() {
-    try {
-      this.weatherInfo = await oneCall();
-    } catch (e) {
-      this.errors.push(e);
-    }
   },
   components: { WeatherIcon, WeatherInfoBig, WeatherInfoSmall },
 };

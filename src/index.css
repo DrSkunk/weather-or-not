@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#app {
+  @apply font-montserrat;
+  @apply bg-city bg-cover;
+  @apply min-h-screen;
+}
+/* 
+@responsive {
+  .stroke {
+    stroke: #fff;
+  }
+} */

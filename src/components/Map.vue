@@ -45,7 +45,7 @@ export default {
   },
   watch: {
     location: function (location) {
-      const { longitude, latitude, zoom } = location;
+      const { longitude, latitude } = location;
       const coordinates = [longitude, latitude];
       if (this.marker) {
         this.marker.setLngLat(coordinates);

@@ -24,13 +24,10 @@ export async function getPositionFromName(location) {
 }
 
 export async function search(text) {
-  console.log("s");
   const data = await doRequest(text, defaultSearchLimit);
-  console.log(data);
   if (data.features.length === 0) {
     return [];
   }
-  console.log(data.features);
   const locations = data.features.map(({ place_name, center }) => ({
     name: place_name,
     coordinates: { longitude: center[0], latitude: center[1] },
@@ -51,7 +48,7 @@ async function doRequest(queryParams, limit = 1) {
 
   const params = new URLSearchParams(data);
   const endpoint = `${baseUrl}${query}.json?${params.toString()}`;
-  console.log(endpoint);
+
   try {
     const { data } = await axios.get(endpoint);
     return data;

@@ -4,9 +4,17 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        montserrat: ["Montserrat"],
+      },
       backgroundImage: {
+        city: "url('/city.jpg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
+      stroke: (theme) => ({
+        black: theme("colors.black"),
+        white: theme("colors.white"),
+      }),
     },
   },
   variants: {

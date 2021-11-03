@@ -19,5 +19,6 @@
   },
   "openweathermap": {
     "lang": "nl"
-  }
+  },
+  "whereAreYou": "Waar ben je?"
 }

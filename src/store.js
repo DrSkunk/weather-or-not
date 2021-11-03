@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import { i18n } from "./i18n";
 
 const state = {
   location: {
@@ -36,6 +37,7 @@ const mutations = {
     state.locationName = locationName;
   },
   setLocale: (state, locale) => {
+    i18n.locale = locale;
     state.locale = locale;
   },
 };

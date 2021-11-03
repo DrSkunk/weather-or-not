@@ -19,5 +19,6 @@
   },
   "openweathermap": {
     "lang": "en"
-  }
+  },
+  "whereAreYou": "Where are you?"
 }

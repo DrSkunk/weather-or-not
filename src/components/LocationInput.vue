@@ -7,15 +7,22 @@
         v-on:keydown.arrow-down="selectNextResult"
         v-on:keydown.enter="selectResult"
         type="text"
-        placeholder="Where are you?"
-        class="border w-56 h-8 rounded"
+        :placeholder="$t('whereAreYou')"
+        class="
+          w-56
+          bg-white bg-opacity-80
+          border-b-4 border-gray-300
+          rounded-tl-xl rounded-br-xl
+          px-4
+          py-2
+        "
       />
       <ul
         v-if="results.length > 0"
         class="
           absolute
           flex flex-col
-          top-10
+          top-12
           rounded
           z-10
           bg-white
@@ -45,11 +52,7 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import {
-  getPositionFromName,
-  getNameFromPosition,
-  search,
-} from "../api/location";
+import { getNameFromPosition, search } from "../api/location";
 
 function truncate(text) {
   const length = 30;
@@ -82,15 +85,11 @@ export default {
         store.dispatch("setLocationName", name);
       }
     }
-
-    const positions = await search("london");
-    console.log("positions", positions);
   },
   setup() {
     const store = useStore();
     return {
       location: computed(() => store.state.location),
-      // locationName: computed(() => store.state.locationName),
     };
   },
   data() {
@@ -103,7 +102,6 @@ export default {
   },
   methods: {
     setLocation({ coordinates, name }) {
-      console.log("setLocation", coordinates, name);
       this.$store.dispatch("setLocation", coordinates);
       this.$store.dispatch("setLocationName", name);
       this.results = [];
@@ -127,7 +125,6 @@ export default {
         return;
       }
       this.selectedResult = (this.selectedResult + 1) % this.results.length;
-      console.log("onArrowDown");
     },
     selectResult() {
       if (this.results.length === 0) {
