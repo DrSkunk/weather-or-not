@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import * as components from "../assets/weatherIcons";
+import * as components from "./weatherIcons";
 export default {
   props: {
     icon: { type: String, required: true },

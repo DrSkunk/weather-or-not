@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" version="1.1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+ <path d="m31.995 38v-12l-3 3.45 3-3.45 3 3.45" fill="none" stroke="#9ca3af" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+  <animateTransform attributeName="transform" begin="0s" dur="1.5s" keyTimes="0.0; 0.5; 0.9; 1.0" repeatCount="indefinite" type="translate" values="0 0; 0 0; 0 -6; 0 -6"/>
+  <animate attributeName="opacity" dur="1.5s" keyTimes="0.0; 0.3; 0.8; 0.9; 1.0" repeatCount="indefinite" values="0; 1; 1; 0; 0"/>
+ </path>
+ <circle cx="32" cy="32" r="18" fill="none" stroke="#9ca3af" stroke-width="2.0003"/>
+</svg>

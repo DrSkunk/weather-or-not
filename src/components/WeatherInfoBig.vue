@@ -16,14 +16,19 @@
       <div>15°</div>
       <div class="">Min</div>
       <div>9°</div>
-      <img src="/winddirection.svg" />
+      <!-- <img src="/winddirection.svg" /> -->
+      <IconWindDirection class="w-12" />
       <div>Z4</div>
     </div>
   </div>
 </template>
 
 <script>
+import { IconWindDirection } from "./weatherIcons";
 export default {
+  components: {
+    IconWindDirection,
+  },
   props: {
     sunrise: {
       type: Date,

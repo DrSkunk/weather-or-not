@@ -8,10 +8,7 @@
     <div class="grid grid-cols-2 w-20 gap-2 ml-auto text-xl">
       <div class="text-lg">{{ minimumTemperatureLocalised }}°</div>
       <div class="text-lg">{{ maximumTemperatureLocalised }}°</div>
-      <img
-        :style="`transform: rotate(${180 + windDegree}deg)`"
-        src="/winddirection.svg"
-      />
+      <IconWindDirection :style="`transform: rotate(${180 + windDegree}deg)`" />
       <div class="text-left">
         <div>{{ windDirection }}</div>
         <div>{{ beaufort }}</div>
@@ -21,6 +18,7 @@
 </template>
 
 <script>
+import { IconWindDirection } from "./weatherIcons";
 import {
   degreeToWindDirection,
   kelvinToCelsius,
@@ -56,6 +54,9 @@ export default {
       type: Number,
       required: true,
     },
+  },
+  components: {
+    IconWindDirection,
   },
   data() {
     return {
