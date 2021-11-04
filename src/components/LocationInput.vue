@@ -10,7 +10,7 @@
         :placeholder="$t('whereAreYou')"
         class="
           w-56
-          bg-white bg-opacity-80
+          bg-gray-100 bg-opacity-80
           border-b-4 border-gray-300
           rounded-tl-xl rounded-br-xl
           px-4

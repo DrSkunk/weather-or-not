@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@bybas/weather-icons": "^2.0.0",
     "@heroicons/vue": "^1.0.5",
     "axios": "^0.24.0",
     "date-fns": "^2.25.0",
@@ -21,6 +22,7 @@
     "autoprefixer": "^10.3.7",
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.17",
-    "vite": "^2.6.4"
+    "vite": "^2.6.4",
+    "vite-svg-loader": "^3.1.0"
   }
 }

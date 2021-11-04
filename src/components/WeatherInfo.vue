@@ -17,17 +17,10 @@
         :windSpeed="weatherInfo.current.windSpeed"
       />
     </div>
+
     <div
       v-if="!loading && weatherInfo.daily"
-      class="
-        grid grid-cols-1
-        sm:grid-cols-7
-        gap-2
-        bg-gray-300 bg-opacity-50 bg-blur
-        sm:divide-y-0
-        divide-y-2
-        rotate-[360deg]
-      "
+      class="grid grid-cols-1 sm:grid-cols-7 gap-2 sm:divide-y-0 divide-y-2"
     >
       <WeatherInfoSmall
         v-for="day in weatherInfo.daily"

@@ -8,7 +8,6 @@ module.exports = {
         montserrat: ["Montserrat"],
       },
       backgroundImage: {
-        city: "url('/city.jpg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
       stroke: (theme) => ({

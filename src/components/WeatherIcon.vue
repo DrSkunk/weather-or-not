@@ -1,15 +1,18 @@
 <template>
-  <img
-    :src="`https://openweathermap.org/img/wn/${icon}@2x.png`"
-    :alt="description"
-  />
+  <div>
+    <component :is="`owm${icon}`" />
+  </div>
 </template>
 
 <script>
+import * as components from "../assets/weatherIcons";
 export default {
   props: {
     icon: { type: String, required: true },
     description: { type: String, required: true },
+  },
+  components: {
+    ...components,
   },
 };
 </script>
