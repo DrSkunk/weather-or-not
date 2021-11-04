@@ -26,10 +26,10 @@ export default {
 
       map.value.on("load", () => {
         // Check if all location values are set
-        if (Object.values(location.value).some((val) => !!val)) {
+        if (store.getters.hasLocation) {
           const { longitude, latitude } = location.value;
           const coordinates = [longitude, latitude];
-          map.value.flyTo({ center: coordinates, zoom: 15 });
+          map.value.flyTo({ center: coordinates, zoom: defaultZoomLevel });
           marker.value = new mapboxgl.Marker()
             .setLngLat(coordinates)
             .addTo(map.value);

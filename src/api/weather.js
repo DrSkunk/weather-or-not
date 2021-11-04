@@ -13,7 +13,7 @@ export async function oneCall({ latitude, longitude }) {
     appid,
     lat: latitude,
     lon: longitude,
-    lang: t("openweathermap.lang"),
+    lang: t("openweathermap.locale"),
   };
   const excludeOptions = ["minutely", "hourly", "alert"];
   if (excludeOptions.length !== 0) {
@@ -39,7 +39,7 @@ export async function oneCall({ latitude, longitude }) {
       windSpeed: data.current.wind_speed,
       beaufort: msToBeaufort(data.current.wind_speed),
       minimumTemperature: data.daily[0].temp.min,
-      minimumTemperature: data.daily[0].temp.max,
+      maximumTemperature: data.daily[0].temp.max,
     };
     result.daily = data.daily.slice(1).map((day) => ({
       ...day,

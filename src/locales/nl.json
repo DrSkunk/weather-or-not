@@ -18,7 +18,10 @@
     "northNorthWest": "NNW"
   },
   "openweathermap": {
-    "lang": "nl"
+    "locale": "nl"
+  },
+  "mapbox": {
+    "locale": "nl-BE"
   },
   "whereAreYou": "Waar ben je?"
 }

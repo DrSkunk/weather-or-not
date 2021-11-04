@@ -1,39 +1,47 @@
 <template>
   <div v-if="location">
     <div class="relative">
-      <input
-        v-model="locationName"
-        v-on:keydown.arrow-up="selectPreviousResult"
-        v-on:keydown.arrow-down="selectNextResult"
-        v-on:keydown.enter="selectResult"
-        type="text"
-        :placeholder="$t('whereAreYou')"
+      <div
         class="
-          w-56
-          bg-gray-100 bg-opacity-80
+          w-72
+          bg-gray-100
           border-b-4 border-gray-300
           rounded-tl-xl rounded-br-xl
           px-4
           py-2
+          relative
+          flex
+          items-center
         "
-      />
+      >
+        <SearchIcon class="w-4 text-gray-500 absolute" />
+        <input
+          v-model="locationName"
+          type="text"
+          class="w-full pl-6 bg-transparent z-10"
+          :placeholder="$t('whereAreYou')"
+          @keydown.arrow-up="selectPreviousResult"
+          @keydown.arrow-down="selectNextResult"
+          @keydown.enter="selectResult"
+        />
+      </div>
+
       <ul
         v-if="results.length > 0"
         class="
           absolute
           flex flex-col
           top-12
-          rounded
           z-10
           bg-white
           border
-          w-56
+          w-72
           divide-y
           cursor-pointer
         "
       >
         <li
-          v-for="(result, index) in this.results"
+          v-for="(result, index) in results"
           :key="result.name"
           :class="[
             'p-2 hover:bg-blue-50',
@@ -53,19 +61,22 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import { SearchIcon } from "@heroicons/vue/solid";
+import { search } from "../api/location";
 
 function truncate(text) {
-  const length = 30;
+  const length = 35;
   return text.length > length ? text.substring(0, length) + "..." : text;
 }
 
 export default {
+  components: { SearchIcon },
   setup() {
     const store = useStore();
     return {
       location: computed(() => store.state.location),
     };
   },
+
   data() {
     return {
       locationName: "",
@@ -73,6 +84,23 @@ export default {
       selectedResult: -1,
       shouldSearch: true,
     };
+  },
+  watch: {
+    locationName: async function (query) {
+      if (query.length === 0 || !this.shouldSearch) {
+        this.shouldSearch = true;
+        return;
+      }
+      this.results = (await search(query)).map(({ name, coordinates }) => {
+        const [title, ...address] = name.split(",");
+        return {
+          name,
+          title,
+          address: truncate(address.join(",")),
+          coordinates,
+        };
+      });
+    },
   },
   methods: {
     setLocation({ coordinates, name }) {
@@ -105,23 +133,6 @@ export default {
         return;
       }
       this.setLocation(this.results[this.selectedResult]);
-    },
-  },
-  watch: {
-    locationName: async function (query) {
-      if (query.length === 0 || !this.shouldSearch) {
-        this.shouldSearch = true;
-        return;
-      }
-      this.results = (await search(query)).map(({ name, coordinates }) => {
-        const [title, ...address] = name.split(",");
-        return {
-          name,
-          title,
-          address: truncate(address.join(",")),
-          coordinates,
-        };
-      });
     },
   },
 };

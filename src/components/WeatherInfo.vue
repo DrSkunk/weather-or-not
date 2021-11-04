@@ -8,13 +8,13 @@
         :description="weatherInfo.current.description"
         :icon="weatherInfo.current.icon"
         :temperature="weatherInfo.current.temperature"
-        :minimumTemperature="weatherInfo.current.minimumTemperature"
-        :maximumTemperature="weatherInfo.current.maximumTemperature"
+        :minimum-temperature="weatherInfo.current.minimumTemperature"
+        :maximum-temperature="weatherInfo.current.maximumTemperature"
         :sunrise="weatherInfo.current.sunrise"
         :sunset="weatherInfo.current.sunset"
         :humidity="weatherInfo.current.humidity"
-        :windDegree="weatherInfo.current.windDegree"
-        :windSpeed="weatherInfo.current.windSpeed"
+        :wind-degree="weatherInfo.current.windDegree"
+        :wind-speed="weatherInfo.current.windSpeed"
       />
     </div>
 
@@ -24,13 +24,14 @@
     >
       <WeatherInfoSmall
         v-for="day in weatherInfo.daily"
+        :key="day.date"
         :day="day.date"
         :description="day.weather[0].description"
         :icon="day.weather[0].icon"
-        :minimumTemperature="day.temp.min"
-        :maximumTemperature="day.temp.max"
-        :windDegree="day.wind_deg"
-        :windSpeed="day.wind_speed"
+        :minimum-temperature="day.temp.min"
+        :maximum-temperature="day.temp.max"
+        :wind-degree="day.wind_deg"
+        :wind-speed="day.wind_speed"
       />
     </div>
   </div>
@@ -46,6 +47,7 @@ import WeatherInfoBig from "./WeatherInfoBig.vue";
 import WeatherInfoSmall from "./WeatherInfoSmall.vue";
 
 export default {
+  components: { WeatherIcon, WeatherInfoBig, WeatherInfoSmall },
   setup() {
     const store = useStore();
     const loading = ref(false);
@@ -68,6 +70,5 @@ export default {
       location: computed(() => store.state.location),
     };
   },
-  components: { WeatherIcon, WeatherInfoBig, WeatherInfoSmall },
 };
 </script>

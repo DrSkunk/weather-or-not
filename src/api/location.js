@@ -1,6 +1,6 @@
 import axios from "axios";
 import { defaultSearchLimit, mapboxToken } from "./config";
-import store from "../store";
+import { i18n } from "../i18n";
 
 const mapBoxBaseUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 const getLocationUrl = "https://ipapi.co/json";
@@ -37,10 +37,11 @@ export async function search(text) {
 }
 
 async function doRequest(queryParams, limit = 1) {
+  const { t } = i18n.global;
   const data = {
     limit,
     access_token: mapboxToken,
-    language: store.getters.locale,
+    language: t("mapbox.locale"),
   };
 
   const query = Array.isArray(queryParams)

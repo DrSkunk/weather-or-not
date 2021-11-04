@@ -29,6 +29,10 @@ import { IconWindDirection } from "./weatherIcons";
 import WeatherIcon from "./WeatherIcon.vue";
 
 export default {
+  components: {
+    IconWindDirection,
+    WeatherIcon,
+  },
   props: {
     day: {
       type: Date,
@@ -58,10 +62,6 @@ export default {
       type: Number,
       required: true,
     },
-  },
-  components: {
-    IconWindDirection,
-    WeatherIcon,
   },
   data() {
     return {

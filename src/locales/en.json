@@ -20,5 +20,8 @@
   "openweathermap": {
     "lang": "en"
   },
+  "mapbox": {
+    "lang": "en-US"
+  },
   "whereAreYou": "Where are you?"
 }

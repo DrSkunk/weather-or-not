@@ -7,13 +7,6 @@ module.exports = {
       fontFamily: {
         montserrat: ["Montserrat"],
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-      },
-      stroke: (theme) => ({
-        black: theme("colors.black"),
-        white: theme("colors.white"),
-      }),
     },
   },
   variants: {

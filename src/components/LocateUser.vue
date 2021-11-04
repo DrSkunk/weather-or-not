@@ -4,6 +4,12 @@ import { useStore } from "vuex";
 import { getNameFromPosition, getUserLocationFromIp } from "../api/location";
 
 export default {
+  setup() {
+    const store = useStore();
+    return {
+      location: computed(() => store.state.location),
+    };
+  },
   async created() {
     if (!("geolocation" in navigator)) {
       return;
@@ -36,12 +42,6 @@ export default {
         store.dispatch("setLocationName", name);
       }
     }
-  },
-  setup() {
-    const store = useStore();
-    return {
-      location: computed(() => store.state.location),
-    };
   },
 };
 </script>

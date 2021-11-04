@@ -2,7 +2,7 @@ import { createI18n } from "vue-i18n";
 import messages from "@intlify/vite-plugin-vue-i18n/messages";
 
 const datetimeFormats = {
-  "en-US": {
+  en: {
     dayShort: {
       weekday: "short",
     },
@@ -20,7 +20,7 @@ const datetimeFormats = {
       minute: "numeric",
     },
   },
-  "nl-BE": {
+  nl: {
     dayShort: {
       weekday: "short",
     },

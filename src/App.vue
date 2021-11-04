@@ -1,5 +1,6 @@
 <template>
   <main
+    :key="locale"
     class="
       container
       mx-auto
@@ -8,9 +9,7 @@
       items-center
       pt-8
       pb-4
-      stroke-black stroke-2
     "
-    :key="locale"
   >
     <LocationInput />
     <WeatherInfo />
@@ -33,12 +32,6 @@ import WeatherIcon from "./components/WeatherIcon.vue";
 import LocateUser from "./components/LocateUser.vue";
 
 export default {
-  setup() {
-    const store = useStore();
-    return {
-      locale: computed(() => store.state.locale),
-    };
-  },
   components: {
     WeatherInfo,
     LocationInput,
@@ -46,6 +39,12 @@ export default {
     LanguageSelector,
     WeatherIcon,
     LocateUser,
+  },
+  setup() {
+    const store = useStore();
+    return {
+      locale: computed(() => store.state.locale),
+    };
   },
 };
 </script>
