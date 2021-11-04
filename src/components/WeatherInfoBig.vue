@@ -1,8 +1,6 @@
 <template>
   <div class="flex justify-center gap-4 p-8">
-    <div>
-      <img src="https://openweathermap.org/img/wn/02d@2x.png" />
-    </div>
+    <div><WeatherIcon :icon="icon" /></div>
     <div class="flex flex-col text-left">
       <!-- <div>vr 29 okt</div> -->
       <div class="text-xl">{{ $d(date, "long") }}</div>
@@ -16,7 +14,6 @@
       <div>15°</div>
       <div class="">Min</div>
       <div>9°</div>
-      <!-- <img src="/winddirection.svg" /> -->
       <IconWindDirection class="w-12" />
       <div>Z4</div>
     </div>
@@ -25,9 +22,12 @@
 
 <script>
 import { IconWindDirection } from "./weatherIcons";
+import WeatherIcon from "./WeatherIcon.vue";
+
 export default {
   components: {
     IconWindDirection,
+    WeatherIcon,
   },
   props: {
     sunrise: {
