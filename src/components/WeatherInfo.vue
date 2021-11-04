@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <div class="h-64">
+    <div class="h-64">
       <div v-if="loading">loading</div>
       <WeatherInfoBig
         v-if="!loading && weatherInfo.current"
@@ -16,7 +16,7 @@
         :windDegree="weatherInfo.current.windDegree"
         :windSpeed="weatherInfo.current.windSpeed"
       />
-    </div> -->
+    </div>
 
     <div
       v-if="!loading && weatherInfo.daily"

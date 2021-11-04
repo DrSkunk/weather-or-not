@@ -2,7 +2,8 @@ import axios from "axios";
 import { defaultSearchLimit, mapboxToken } from "./config";
 import store from "../store";
 
-const baseUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
+const mapBoxBaseUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
+const getLocationUrl = "https://ipapi.co/json";
 
 export async function getNameFromPosition(location) {
   const { latitude, longitude } = location;
@@ -47,7 +48,7 @@ async function doRequest(queryParams, limit = 1) {
     : queryParams;
 
   const params = new URLSearchParams(data);
-  const endpoint = `${baseUrl}${query}.json?${params.toString()}`;
+  const endpoint = `${mapBoxBaseUrl}${query}.json?${params.toString()}`;
 
   try {
     const { data } = await axios.get(endpoint);
@@ -56,4 +57,9 @@ async function doRequest(queryParams, limit = 1) {
     console.error(error);
     throw new Error("Invalid API request");
   }
+}
+
+export async function getUserLocationFromIp() {
+  const { latitude, longitude, city } = (await axios.get(getLocationUrl)).data;
+  return { latitude, longitude, city };
 }

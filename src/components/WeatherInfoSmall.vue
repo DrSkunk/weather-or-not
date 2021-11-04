@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import { IconWindDirection } from "./weatherIcons";
 import {
   degreeToWindDirection,
   kelvinToCelsius,
   msToBeaufort,
 } from "../api/unit";
+import { IconWindDirection } from "./weatherIcons";
 import WeatherIcon from "./WeatherIcon.vue";
 
 export default {

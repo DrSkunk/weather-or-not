@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "format": "prettier .  --write"
   },
   "dependencies": {
     "@bybas/weather-icons": "^2.0.0",
@@ -20,7 +22,11 @@
     "@intlify/vite-plugin-vue-i18n": "^2.5.0",
     "@vitejs/plugin-vue": "^1.9.3",
     "autoprefixer": "^10.3.7",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^8.0.3",
     "postcss": "^8.3.11",
+    "prettier": "^2.4.1",
     "tailwindcss": "^2.2.17",
     "vite": "^2.6.4",
     "vite-svg-loader": "^3.1.0"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component :is="`owm${icon}`" />
+    <component :is="`Icon${icon}`" />
   </div>
 </template>
 

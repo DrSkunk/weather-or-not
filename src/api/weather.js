@@ -28,6 +28,7 @@ export async function oneCall({ latitude, longitude }) {
     const result = {};
     result.current = {
       date: new Date(data.current.dt * 1000),
+      icon: data.current.weather[0].icon,
       description: data.current.weather[0].description,
       temperature: data.current.temp,
       sunrise: new Date(data.current.sunrise * 1000),

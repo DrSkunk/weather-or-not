@@ -13,8 +13,8 @@
     :key="locale"
   >
     <LocationInput />
-    <WeatherIcon icon="01d" description="clear sky" />
     <WeatherInfo />
+    <LocateUser />
     <!-- <LanguageSelector /> -->
     <!-- <div class="h-96">
       <Map />
@@ -30,6 +30,7 @@ import LanguageSelector from "./components/LanguageSelector.vue";
 import { computed } from "@vue/reactivity";
 import { useStore } from "vuex";
 import WeatherIcon from "./components/WeatherIcon.vue";
+import LocateUser from "./components/LocateUser.vue";
 
 export default {
   setup() {
@@ -44,6 +45,7 @@ export default {
     Map,
     LanguageSelector,
     WeatherIcon,
+    LocateUser,
   },
 };
 </script>
