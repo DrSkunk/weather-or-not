@@ -42,7 +42,7 @@ const datetimeFormats = {
 };
 
 export const i18n = createI18n({
-  locale: "en-US",
+  locale: "en",
   globalInjection: true,
   datetimeFormats,
   messages,

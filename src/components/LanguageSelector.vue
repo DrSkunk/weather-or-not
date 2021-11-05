@@ -22,11 +22,11 @@ export default {
       languages: [
         {
           name: "English",
-          code: "en-US",
+          code: "en",
         },
         {
           name: "Nederlands",
-          code: "nl-BE",
+          code: "nl",
         },
       ],
     };
