@@ -41,6 +41,7 @@ const appid = openWeatherApiKey;
  * Get weather forecast based on the given location
  * {@link https://openweathermap.org/api/one-call-apiSource API reference}
  * @param {Object} location - The location for which to get the weather forecast
+ * @throws Will throw error on invalid key, location or locale
  * @returns {WeatherForecast} The weather forecast
  */
 export async function getWeatherForecast({ latitude, longitude }) {
@@ -55,8 +56,8 @@ export async function getWeatherForecast({ latitude, longitude }) {
   if (excludeOptions.length !== 0) {
     data.exclude = excludeOptions.join(",");
   }
-  const params = new URLSearchParams(data);
-  const endpoint = `${baseUrl}onecall?${params.tostring()}`;
+  const params = new URLSearchParams(data).toString();
+  const endpoint = `${baseUrl}onecall?${params}`;
 
   try {
     const { data } = await axios.get(endpoint);
@@ -96,7 +97,7 @@ export async function getWeatherForecast({ latitude, longitude }) {
     return result;
   } catch (error) {
     console.error(error);
-    throw new Error("Invalid API request");
+    throw new Error("An error occured while fetching the weather forecast.");
   }
 }
 

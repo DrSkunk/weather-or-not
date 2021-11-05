@@ -18,6 +18,9 @@ import LocationInput from "./components/LocationInput.vue";
 import LocationMap from "./components/LocationMap.vue";
 import LanguageSelector from "./components/LanguageSelector.vue";
 import TemperatureScale from "./components/TemperatureScale.vue";
+import { setUserLocationFromIp } from "./api/location";
+
+setUserLocationFromIp();
 
 export default {
   components: {
@@ -26,6 +29,9 @@ export default {
     LocationMap,
     LanguageSelector,
     TemperatureScale,
+  },
+  setup() {
+    setUserLocationFromIp();
   },
 };
 </script>
