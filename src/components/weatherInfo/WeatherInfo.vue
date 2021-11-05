@@ -25,7 +25,7 @@
 
     <div
       v-if="!loading && weatherInfo.daily"
-      class="flex flex-col lg:flex-row gap-2 lg:divide-y-0 divide-y-2"
+      class="flex flex-col lg:flex-row justify-center gap-2 lg:divide-y-0 divide-y-2"
     >
       <WeatherInfoSmall
         v-for="day in weatherInfo.daily"
