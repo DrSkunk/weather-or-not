@@ -1,59 +1,57 @@
 <template>
-  <div v-if="location">
-    <div class="relative">
-      <div
-        class="
-          w-72
-          bg-gray-100
-          border-b-4 border-gray-300
-          rounded-tl-xl rounded-br-xl
-          px-4
-          py-2
-          relative
-          flex
-          items-center
-        "
-      >
-        <SearchIcon class="w-4 text-gray-500 absolute" />
-        <input
-          v-model="locationName"
-          type="text"
-          class="w-full pl-6 bg-transparent z-10"
-          :placeholder="$t('whereAreYou')"
-          @keydown.arrow-up="selectPreviousResult"
-          @keydown.arrow-down="selectNextResult"
-          @keydown.enter="selectResult"
-        />
-      </div>
-
-      <ul
-        v-if="results.length > 0"
-        class="
-          absolute
-          flex flex-col
-          top-12
-          z-10
-          bg-white
-          border
-          w-72
-          divide-y
-          cursor-pointer
-        "
-      >
-        <li
-          v-for="(result, index) in results"
-          :key="result.name"
-          :class="[
-            'p-2 hover:bg-blue-50',
-            index === selectedResult && 'bg-blue-200',
-          ]"
-          @click="setLocation(result)"
-        >
-          <div>{{ result.title }}</div>
-          <div class="text-sm">{{ result.address }}</div>
-        </li>
-      </ul>
+  <div class="relative pb-4">
+    <div
+      class="
+        w-72
+        bg-gray-100
+        border-b-4 border-gray-300
+        rounded-tl-xl rounded-br-xl
+        px-4
+        py-2
+        relative
+        flex
+        items-center
+      "
+    >
+      <SearchIcon class="w-4 text-gray-500 absolute" />
+      <input
+        v-model="locationName"
+        type="text"
+        class="w-full pl-6 bg-transparent z-10"
+        :placeholder="$t('whereAreYou')"
+        @keydown.arrow-up="selectPreviousResult"
+        @keydown.arrow-down="selectNextResult"
+        @keydown.enter="selectResult"
+      />
     </div>
+
+    <ul
+      v-if="results.length > 0"
+      class="
+        absolute
+        flex flex-col
+        top-12
+        z-10
+        bg-white
+        border
+        w-72
+        divide-y
+        cursor-pointer
+      "
+    >
+      <li
+        v-for="(result, index) in results"
+        :key="result.name"
+        :class="[
+          'p-2 hover:bg-blue-50',
+          index === selectedResult && 'bg-blue-200',
+        ]"
+        @click="setLocation(result)"
+      >
+        <div>{{ result.title }}</div>
+        <div class="text-sm">{{ result.address }}</div>
+      </li>
+    </ul>
   </div>
 </template>
 

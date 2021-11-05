@@ -1,26 +1,25 @@
 <template>
   <div>
-    <div class="h-64">
-      <div v-if="loading">loading</div>
-      <WeatherInfoBig
-        v-if="!loading && weatherInfo.current"
-        :date="weatherInfo.current.date"
-        :description="weatherInfo.current.description"
-        :icon="weatherInfo.current.icon"
-        :temperature="weatherInfo.current.temperature"
-        :minimum-temperature="weatherInfo.current.minimumTemperature"
-        :maximum-temperature="weatherInfo.current.maximumTemperature"
-        :sunrise="weatherInfo.current.sunrise"
-        :sunset="weatherInfo.current.sunset"
-        :humidity="weatherInfo.current.humidity"
-        :wind-degree="weatherInfo.current.windDegree"
-        :wind-speed="weatherInfo.current.windSpeed"
-      />
-    </div>
+    <div v-if="loading">loading</div>
+    <WeatherInfoBig
+      v-if="!loading && weatherInfo.current"
+      :date="weatherInfo.current.date"
+      :description="weatherInfo.current.description"
+      :icon="weatherInfo.current.icon"
+      :temperature="weatherInfo.current.temperature"
+      :minimum-temperature="weatherInfo.current.minimumTemperature"
+      :maximum-temperature="weatherInfo.current.maximumTemperature"
+      :sunrise="weatherInfo.current.sunrise"
+      :sunset="weatherInfo.current.sunset"
+      :humidity="weatherInfo.current.humidity"
+      :wind-degree="weatherInfo.current.windDegree"
+      :wind-direction="weatherInfo.current.windDirection"
+      :wind-speed="weatherInfo.current.windSpeed"
+    />
 
     <div
       v-if="!loading && weatherInfo.daily"
-      class="grid grid-cols-1 sm:grid-cols-7 gap-2 sm:divide-y-0 divide-y-2"
+      class="flex flex-col md:flex-row gap-2 md:divide-y-0 divide-y-2"
     >
       <WeatherInfoSmall
         v-for="day in weatherInfo.daily"
@@ -31,6 +30,7 @@
         :minimum-temperature="day.minimumTemperature"
         :maximum-temperature="day.maximumTemperature"
         :wind-degree="day.windDegree"
+        :wind-direction="day.windDirection"
         :wind-speed="day.windSpeed"
         :beaufort="day.beaufort"
       />

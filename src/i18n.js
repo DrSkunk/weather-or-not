@@ -12,12 +12,9 @@ const datetimeFormats = {
       day: "numeric",
     },
     long: {
-      year: "numeric",
-      month: "short",
+      weekday: "long",
+      month: "long",
       day: "numeric",
-      weekday: "short",
-      hour: "numeric",
-      minute: "numeric",
     },
   },
   nl: {
@@ -30,13 +27,9 @@ const datetimeFormats = {
       day: "numeric",
     },
     long: {
-      year: "numeric",
-      month: "short",
+      weekday: "long",
+      month: "long",
       day: "numeric",
-      weekday: "short",
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
     },
   },
 };

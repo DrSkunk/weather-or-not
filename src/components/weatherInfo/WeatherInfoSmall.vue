@@ -1,33 +1,34 @@
 <template>
-  <div class="flex flex-row sm:flex-col py-4 mx-4">
-    <div class="text-left">
+  <div class="flex flex-row md:flex-col justify-between py-4 mx-4">
+    <div class="text-left flex-1 h-16">
       <div class="text-xl">{{ $d(day, "dayShort") }}</div>
       <div class="text-md">{{ description }}</div>
     </div>
     <div class="w-24">
       <WeatherIcon :icon="icon" :description="description" />
     </div>
-    <div class="grid grid-cols-2 w-20 gap-2 ml-auto text-xl">
-      <div class="text-lg">{{ minimumTemperature }}°</div>
-      <div class="text-lg">{{ maximumTemperature }}°</div>
-      <IconWindDirection :style="`transform: rotate(${180 + windDegree}deg)`" />
-      <div class="text-left">
-        <div>{{ windDirection }}</div>
-        <div>{{ beaufort }}</div>
+    <div class="flex-1">
+      <div class="ml-auto md:mx-auto grid grid-cols-2 w-20 gap-2 text-xl">
+        <div class="text-lg">{{ minimumTemperature }}°</div>
+        <div class="text-lg">{{ maximumTemperature }}°</div>
+        <WindDirection class="w-10" :wind-degree="windDegree" />
+        <div class="text-left">
+          <div>{{ windDirection }}</div>
+          <div>{{ beaufort }}</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { degreeToWindDirection } from "api/unitConversion";
-import { IconWindDirection } from "components/icons/weatherIcons";
 import WeatherIcon from "components/icons/WeatherIcon.vue";
+import WindDirection from "../icons/WindDirection.vue";
 
 export default {
   components: {
-    IconWindDirection,
     WeatherIcon,
+    WindDirection,
   },
   props: {
     day: {
@@ -54,6 +55,10 @@ export default {
       type: Number,
       required: true,
     },
+    windDirection: {
+      type: String,
+      required: true,
+    },
     windSpeed: {
       type: Number,
       required: true,
@@ -62,11 +67,6 @@ export default {
       type: Number,
       required: true,
     },
-  },
-  data() {
-    return {
-      windDirection: degreeToWindDirection(this.windDegree),
-    };
   },
 };
 </script>

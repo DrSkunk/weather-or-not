@@ -17,6 +17,8 @@
     "northWest": "NW",
     "northNorthWest": "NNW"
   },
+  "min": "min",
+  "max": "max",
   "openweathermap": {
     "locale": "en"
   },

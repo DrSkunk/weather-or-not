@@ -1,35 +1,33 @@
 <template>
-  <div class="flex justify-center gap-4 p-8">
+  <div class="flex flex-wrap justify-center gap-4 m-2">
     <div>
       <WeatherIcon class="w-32" :icon="icon" :description="description" />
     </div>
     <div class="flex flex-col text-left">
       <!-- <div>vr 29 okt</div> -->
       <div class="text-xl">{{ $d(date, "long") }}</div>
-      <div class="text-7xl">12°</div>
-      <!-- <div class="text-7xl">{{ temperature }}°</div> -->
-      <div>bewolkt met opklaringen</div>
-      <div class="text-sm">waarneming van 08:00</div>
+      <div class="text-7xl">{{ temperature }}°</div>
+      <div v-text="description" />
     </div>
     <div class="grid grid-cols-2">
-      <div class="">Max</div>
-      <div>15°</div>
-      <div class="">Min</div>
-      <div>9°</div>
-      <IconWindDirection class="w-12" />
-      <div>Z4</div>
+      <div>{{ $t("max") }}</div>
+      <div>{{ maximumTemperature }}°</div>
+      <div>{{ $t("min") }}</div>
+      <div>{{ minimumTemperature }}°</div>
+      <WindDirection class="h-12" :wind-degree="windDegree" />
+      <div v-text="windDirection" />
     </div>
   </div>
 </template>
 
 <script>
-import { IconWindDirection } from "components/icons/weatherIcons";
 import WeatherIcon from "components/icons/WeatherIcon.vue";
+import WindDirection from "../icons/WindDirection.vue";
 
 export default {
   components: {
-    IconWindDirection,
     WeatherIcon,
+    WindDirection,
   },
   props: {
     sunrise: {
@@ -70,6 +68,10 @@ export default {
     },
     windDegree: {
       type: Number,
+      required: true,
+    },
+    windDirection: {
+      type: String,
       required: true,
     },
     windSpeed: {

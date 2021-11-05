@@ -3,6 +3,7 @@ import { i18n } from "@/i18n";
 import store from "@/store";
 import { openWeatherApiKey } from "./config";
 import {
+  degreeToWindDirection,
   kelvinToCelsius,
   kelvinToFahrenheit,
   msToBeaufort,
@@ -40,6 +41,7 @@ export async function oneCall({ latitude, longitude }) {
       pressure: data.current.pressure,
       humidity: data.current.humidity,
       windDegree: data.current.wind_deg,
+      windDirection: degreeToWindDirection(data.current.wind_deg),
       windSpeed: data.current.wind_speed,
       beaufort: msToBeaufort(data.current.wind_speed),
       temperature: convertTemperature(data.current.temp),
@@ -55,6 +57,7 @@ export async function oneCall({ latitude, longitude }) {
       pressure: day.pressure,
       humidity: day.humidity,
       windDegree: day.wind_deg,
+      windDirection: degreeToWindDirection(day.wind_deg),
       windSpeed: day.wind_speed,
       beaufort: msToBeaufort(day.wind_speed),
       temperature: convertTemperature(day.temp.day),
