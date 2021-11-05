@@ -27,8 +27,6 @@ export default {
   },
   methods: {
     changeLanguage(language) {
-      console.log(language);
-      console.log(this.$root.$i18n.availableLocales);
       this.$root.$i18n.locale = language;
     },
   },

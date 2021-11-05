@@ -43,8 +43,8 @@ import { computed, ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { oneCall } from "api/weather";
-import WeatherInfoBig from "components/WeatherInfoBig.vue";
-import WeatherInfoSmall from "components/WeatherInfoSmall.vue";
+import WeatherInfoBig from "./WeatherInfoBig.vue";
+import WeatherInfoSmall from "./WeatherInfoSmall.vue";
 
 export default {
   components: { WeatherInfoBig, WeatherInfoSmall },

@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     setScale(scale) {
-      console.log("setScale", scale);
       this.$store.commit("setTemperatureScale", scale);
     },
   },

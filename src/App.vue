@@ -4,7 +4,10 @@
       <LanguageSelector />
       <TemperatureScale />
     </header>
-    <main class="flex flex-col justify-center items-center mt-4">
+    <main
+      :key="$store.state.temperatureScale"
+      class="flex flex-col justify-center items-center mt-4"
+    >
       <LocationInput />
       <WeatherInfo />
       <LocateUser />
