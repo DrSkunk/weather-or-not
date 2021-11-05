@@ -5,7 +5,7 @@
   />
 </template>
 <script>
-import IconWindDirection from "assets/windDirection.svg?component";
+import { IconWindDirection } from "./weatherIcons";
 
 export default {
   components: {

@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import WeatherInfo from "components/weatherInfo/WeatherInfo.vue";
-import LocationInput from "components/LocationInput.vue";
-import LocationMap from "components/LocationMap.vue";
-import LanguageSelector from "components/LanguageSelector.vue";
-import TemperatureScale from "components/TemperatureScale.vue";
+import WeatherInfo from "./components/weatherInfo/WeatherInfo.vue";
+import LocationInput from "./components/LocationInput.vue";
+import LocationMap from "./components/LocationMap.vue";
+import LanguageSelector from "./components/LanguageSelector.vue";
+import TemperatureScale from "./components/TemperatureScale.vue";
 
 export default {
   components: {

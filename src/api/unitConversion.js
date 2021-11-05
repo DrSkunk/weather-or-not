@@ -1,4 +1,4 @@
-import { i18n } from "@/i18n";
+import { i18n } from "../i18n";
 
 /**
  * Converts speed in meters per second to beaufort scale

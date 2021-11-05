@@ -1,6 +1,6 @@
 import axios from "axios";
-import { i18n } from "@/i18n";
-import store from "@/store";
+import { i18n } from "../i18n";
+import store from "../store";
 import { openWeatherApiKey } from "./config";
 import {
   degreeToWindDirection,
@@ -33,11 +33,10 @@ const appid = openWeatherApiKey;
 
 /**
  * @typedef {Object} WeatherForecast
- * @property {Object} daily
- * @property {number} y - The Y Coordinate
+ * @property {DayForecast} daily - Weather forecast of today
+ * @property {DayForecast[]} daily - Weather forecast of the next 7 days
  */
 
-//
 /**
  * Get weather forecast based on the given location
  * {@link https://openweathermap.org/api/one-call-apiSource API reference}
@@ -101,6 +100,11 @@ export async function getWeatherForecast({ latitude, longitude }) {
   }
 }
 
+/**
+ * Convert the given temperature in Kelvin to the localised temperature scale
+ * @param {number} temperature  - Temperature in Kelvin
+ * @returns {number} Temperature in the localised temperature scale
+ */
 export function convertTemperature(temperature) {
   switch (store.state.temperatureScale) {
     case temperatureScale.CELSIUS:

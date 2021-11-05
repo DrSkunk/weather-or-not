@@ -47,7 +47,7 @@
 import { computed, ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
 import { useStore } from "vuex";
-import { getWeatherForecast, convertTemperature } from "api/weather";
+import { getWeatherForecast, convertTemperature } from "../../api/weather";
 import WeatherInfoBig from "./WeatherInfoBig.vue";
 import WeatherInfoSmall from "./WeatherInfoSmall.vue";
 

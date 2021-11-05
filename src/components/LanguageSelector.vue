@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import { languages } from "@/i18n";
-import RadioInput from "components/RadioInput.vue";
+import { languages } from "../i18n";
+import RadioInput from "./RadioInput.vue";
 
 export default {
   components: {

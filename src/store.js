@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import temperatureScale from "api/temperatureScale";
+import temperatureScale from "./api/temperatureScale";
 
 const state = {
   location: {

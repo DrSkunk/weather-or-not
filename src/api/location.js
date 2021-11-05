@@ -1,6 +1,6 @@
 import axios from "axios";
-import store from "@/store";
-import { i18n } from "@/i18n";
+import store from "../store";
+import { i18n } from "../i18n";
 import { defaultSearchLimit, mapboxToken } from "./config";
 
 const mapBoxBaseUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";

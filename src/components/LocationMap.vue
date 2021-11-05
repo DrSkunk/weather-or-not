@@ -7,7 +7,7 @@ import { ref, onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { defaultZoomLevel, mapboxToken } from "api/config";
+import { defaultZoomLevel, mapboxToken } from "../api/config";
 
 export default {
   setup() {

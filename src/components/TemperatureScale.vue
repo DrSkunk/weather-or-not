@@ -17,10 +17,10 @@
 
 <script>
 import { computed } from "@vue/reactivity";
-import temperatureScale from "api/temperatureScale";
+import temperatureScale from "../api/temperatureScale";
 import { useStore } from "vuex";
-import { IconCelsius, IconFahrenheit } from "components/icons/weatherIcons";
-import RadioInput from "components/RadioInput.vue";
+import { IconCelsius, IconFahrenheit } from "./icons/weatherIcons";
+import RadioInput from "./RadioInput.vue";
 
 export default {
   components: { RadioInput, IconCelsius, IconFahrenheit },
