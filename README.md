@@ -1,5 +1,7 @@
 # Weather or not
 
+Basic web application that shows the weather forecast based on OpenWeather data.
+
 ## Installation
 
 This requires [NodeJS](https://nodejs.org/en/) to be installed.
