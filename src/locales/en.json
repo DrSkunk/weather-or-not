@@ -18,10 +18,10 @@
     "northNorthWest": "NNW"
   },
   "openweathermap": {
-    "lang": "en"
+    "locale": "en"
   },
   "mapbox": {
-    "lang": "en-US"
+    "locale": "en-US"
   },
   "whereAreYou": "Where are you?"
 }

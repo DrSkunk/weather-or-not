@@ -1,6 +1,8 @@
 <template>
   <div class="flex justify-center gap-4 p-8">
-    <div><WeatherIcon :icon="icon" /></div>
+    <div>
+      <WeatherIcon class="w-32" :icon="icon" :description="description" />
+    </div>
     <div class="flex flex-col text-left">
       <!-- <div>vr 29 okt</div> -->
       <div class="text-xl">{{ $d(date, "long") }}</div>

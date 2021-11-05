@@ -29,6 +29,9 @@ const actions = {
   setLocale({ commit }, locale) {
     commit("setLocale", locale);
   },
+  setTemperatureScale({ commit }, temperatureScale) {
+    commit("setTemperatureScale", temperatureScale);
+  },
 };
 
 const mutations = {
@@ -41,6 +44,9 @@ const mutations = {
   setLocale: (state, locale) => {
     i18n.locale = locale;
     state.locale = locale;
+  },
+  setTemperatureScale: (state, temperatureScale) => {
+    state.temperatureScale = temperatureScale;
   },
 };
 

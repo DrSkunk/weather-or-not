@@ -57,8 +57,6 @@ export default {
         loading.value = true;
         const data = await oneCall(store.getters.location);
         weatherInfo.value = data;
-        console.log(data);
-        console.log(weatherInfo.value.current);
         loading.value = false;
       }
     });

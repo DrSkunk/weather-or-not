@@ -1,35 +1,41 @@
 <template>
-  <div>
-    <label class="">
-      <input
-        v-model="temperatureScaleSelect"
-        class="hidden"
-        type="radio"
-        :value="temperatureScale.CELSIUS"
-      />
-      Celsius
-    </label>
-    <label>
-      <input
-        v-model="temperatureScaleSelect"
-        type="radio"
-        :value="temperatureScale.FAHRENHEIT"
-      />
-      Fahrenheit
-    </label>
-    {{ temperatureScaleSelect }}
+  <div class="flex gap-2">
+    <RadioInput
+      :selected-scale="selectedScale"
+      :value="temperatureScale.CELSIUS"
+      :on-click="setScale"
+      ><IconCelsius class="w-12" />
+    </RadioInput>
+    <RadioInput
+      :selected-scale="selectedScale"
+      :value="temperatureScale.FAHRENHEIT"
+      :on-click="setScale"
+      ><IconFahrenheit class="w-12" />
+    </RadioInput>
   </div>
 </template>
 
 <script>
+import { computed } from "@vue/reactivity";
 import temperatureScale from "api/temperatureScale";
+import { useStore } from "vuex";
+import { IconCelsius, IconFahrenheit } from "components/icons/weatherIcons";
+import RadioInput from "components/RadioInput.vue";
 
 export default {
-  data() {
+  components: { RadioInput, IconCelsius, IconFahrenheit },
+  setup() {
+    const store = useStore();
     return {
-      temperatureScaleSelect: temperatureScale.CELSIUS,
+      selectedScale: computed(() => store.state.temperatureScale),
       temperatureScale,
     };
+  },
+  methods: {
+    setScale(scale) {
+      console.log("setScale", scale);
+      this.$store.commit("setTemperatureScale", scale);
+    },
   },
 };
 </script>
