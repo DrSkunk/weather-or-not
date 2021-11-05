@@ -26,12 +26,13 @@
         v-for="day in weatherInfo.daily"
         :key="day.date"
         :day="day.date"
-        :description="day.weather[0].description"
-        :icon="day.weather[0].icon"
-        :minimum-temperature="day.temp.min"
-        :maximum-temperature="day.temp.max"
-        :wind-degree="day.wind_deg"
-        :wind-speed="day.wind_speed"
+        :description="day.description"
+        :icon="day.icon"
+        :minimum-temperature="day.minimumTemperature"
+        :maximum-temperature="day.maximumTemperature"
+        :wind-degree="day.windDegree"
+        :wind-speed="day.windSpeed"
+        :beaufort="day.beaufort"
       />
     </div>
   </div>

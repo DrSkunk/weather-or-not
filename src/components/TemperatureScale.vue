@@ -1,13 +1,13 @@
 <template>
   <div class="flex gap-2">
     <RadioInput
-      :selected-scale="selectedScale"
+      :selected-value="selectedScale"
       :value="temperatureScale.CELSIUS"
       :on-click="setScale"
       ><IconCelsius class="w-12" />
     </RadioInput>
     <RadioInput
-      :selected-scale="selectedScale"
+      :selected-value="selectedScale"
       :value="temperatureScale.FAHRENHEIT"
       :on-click="setScale"
       ><IconFahrenheit class="w-12" />

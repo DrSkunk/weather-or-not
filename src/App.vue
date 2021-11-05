@@ -1,25 +1,18 @@
 <template>
-  <main
-    :key="locale"
-    class="
-      container
-      mx-auto
-      flex flex-col
-      justify-center
-      items-center
-      pt-8
-      pb-4
-    "
-  >
-    <LocationInput />
-    <TemperatureScale class="absolute right-5 top-5" />
-    <WeatherInfo />
-    <LocateUser />
-    <!-- <LanguageSelector /> -->
-    <!-- <div class="h-96">
-      <LocationMap />
-    </div> -->
-  </main>
+  <div class="container mx-auto py-4">
+    <header class="flex just justify-between px-2 sm:px-0">
+      <LanguageSelector />
+      <TemperatureScale />
+    </header>
+    <main :key="locale" class="flex flex-col justify-center items-center mt-4">
+      <LocationInput />
+      <WeatherInfo />
+      <LocateUser />
+      <div class="h-96">
+        <LocationMap />
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>

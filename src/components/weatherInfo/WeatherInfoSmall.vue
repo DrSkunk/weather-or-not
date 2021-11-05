@@ -8,8 +8,8 @@
       <WeatherIcon :icon="icon" :description="description" />
     </div>
     <div class="grid grid-cols-2 w-20 gap-2 ml-auto text-xl">
-      <div class="text-lg">{{ minimumTemperatureLocalised }}°</div>
-      <div class="text-lg">{{ maximumTemperatureLocalised }}°</div>
+      <div class="text-lg">{{ minimumTemperature }}°</div>
+      <div class="text-lg">{{ maximumTemperature }}°</div>
       <IconWindDirection :style="`transform: rotate(${180 + windDegree}deg)`" />
       <div class="text-left">
         <div>{{ windDirection }}</div>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { degreeToWindDirection, kelvinToCelsius, msToBeaufort } from "api/unit";
+import { degreeToWindDirection } from "api/unitConversion";
 import { IconWindDirection } from "components/icons/weatherIcons";
 import WeatherIcon from "components/icons/WeatherIcon.vue";
 
@@ -58,12 +58,13 @@ export default {
       type: Number,
       required: true,
     },
+    beaufort: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
-      minimumTemperatureLocalised: kelvinToCelsius(this.minimumTemperature),
-      maximumTemperatureLocalised: kelvinToCelsius(this.maximumTemperature),
-      beaufort: msToBeaufort(this.windSpeed),
       windDirection: degreeToWindDirection(this.windDegree),
     };
   },

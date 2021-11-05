@@ -1,8 +1,8 @@
 <template>
   <label
     :class="[
-      'block w-12 hover:bg-gray-100 cursor-pointer rounded',
-      selectedScale === value ? 'bg-gray-100' : 'bg-gray-50',
+      'flex h-12 items-center hover:bg-gray-100 cursor-pointer rounded',
+      selectedValue === value ? 'bg-gray-100' : 'bg-gray-50',
     ]"
   >
     <input type="radio" class="hidden" :value="value" @click="onClick(value)" />
@@ -14,7 +14,7 @@
 <script>
 export default {
   props: {
-    selectedScale: {
+    selectedValue: {
       type: String,
       required: true,
     },
