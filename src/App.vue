@@ -4,16 +4,10 @@
       <LanguageSelector />
       <TemperatureScale />
     </header>
-    <main
-      :key="$store.state.temperatureScale"
-      class="flex flex-col justify-center items-center mt-4"
-    >
+    <main class="flex flex-col justify-center items-center mt-4">
       <LocationInput />
       <WeatherInfo />
-      <LocateUser />
-      <div class="h-96">
-        <LocationMap />
-      </div>
+      <LocationMap class="h-96 w-full" />
     </main>
   </div>
 </template>
@@ -23,7 +17,6 @@ import WeatherInfo from "components/weatherInfo/WeatherInfo.vue";
 import LocationInput from "components/LocationInput.vue";
 import LocationMap from "components/LocationMap.vue";
 import LanguageSelector from "components/LanguageSelector.vue";
-import LocateUser from "components/LocateUser.vue";
 import TemperatureScale from "components/TemperatureScale.vue";
 
 export default {
@@ -32,7 +25,6 @@ export default {
     LocationInput,
     LocationMap,
     LanguageSelector,
-    LocateUser,
     TemperatureScale,
   },
 };

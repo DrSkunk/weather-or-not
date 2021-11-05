@@ -1,14 +1,19 @@
 <template>
   <div>
+    <div v-if="error">{{ error }}</div>
     <div v-if="loading">loading</div>
     <WeatherInfoBig
       v-if="!loading && weatherInfo.current"
       :date="weatherInfo.current.date"
       :description="weatherInfo.current.description"
       :icon="weatherInfo.current.icon"
-      :temperature="weatherInfo.current.temperature"
-      :minimum-temperature="weatherInfo.current.minimumTemperature"
-      :maximum-temperature="weatherInfo.current.maximumTemperature"
+      :temperature="convertTemperature(weatherInfo.current.temperature)"
+      :minimum-temperature="
+        convertTemperature(weatherInfo.current.minimumTemperature)
+      "
+      :maximum-temperature="
+        convertTemperature(weatherInfo.current.maximumTemperature)
+      "
       :sunrise="weatherInfo.current.sunrise"
       :sunset="weatherInfo.current.sunset"
       :humidity="weatherInfo.current.humidity"
@@ -27,8 +32,8 @@
         :day="day.date"
         :description="day.description"
         :icon="day.icon"
-        :minimum-temperature="day.minimumTemperature"
-        :maximum-temperature="day.maximumTemperature"
+        :minimum-temperature="convertTemperature(day.minimumTemperature)"
+        :maximum-temperature="convertTemperature(day.maximumTemperature)"
         :wind-degree="day.windDegree"
         :wind-direction="day.windDirection"
         :wind-speed="day.windSpeed"
@@ -42,7 +47,7 @@
 import { computed, ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
 import { useStore } from "vuex";
-import { oneCall } from "api/weather";
+import { getWeatherForecast, convertTemperature } from "api/weather";
 import WeatherInfoBig from "./WeatherInfoBig.vue";
 import WeatherInfoSmall from "./WeatherInfoSmall.vue";
 
@@ -52,21 +57,30 @@ export default {
     const store = useStore();
     const loading = ref(false);
     const weatherInfo = ref({ current: null, daily: null });
+    const error = ref(null);
 
     watchEffect(async () => {
       if (store.getters.hasLocation) {
-        loading.value = true;
-        const data = await oneCall(store.getters.location);
-        weatherInfo.value = data;
-        loading.value = false;
+        try {
+          loading.value = true;
+          const data = await getWeatherForecast(store.getters.location);
+          weatherInfo.value = data;
+          loading.value = false;
+        } catch (err) {
+          error.value = err;
+        }
       }
     });
 
     return {
       weatherInfo,
       loading,
+      error,
       location: computed(() => store.state.location),
     };
+  },
+  methods: {
+    convertTemperature,
   },
 };
 </script>

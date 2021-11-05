@@ -33,7 +33,7 @@ export function kelvinToFahrenheit(kelvin) {
 /**
  * Convert wind direction in degrees to a compass point
  * @param {number} degree - wind direction in degrees
- * @returns {String} abbreviated wind direction
+ * @returns {string} abbreviated wind direction
  */
 export function degreeToWindDirection(degree) {
   const val = Math.round(degree / 22.5);

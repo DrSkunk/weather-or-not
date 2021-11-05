@@ -1,6 +1,7 @@
 import axios from "axios";
-import { defaultSearchLimit, mapboxToken } from "./config";
+import store from "@/store";
 import { i18n } from "@/i18n";
+import { defaultSearchLimit, mapboxToken } from "./config";
 
 const mapBoxBaseUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 const getLocationUrl = "https://ipapi.co/json";
@@ -60,7 +61,27 @@ async function doRequest(queryParams, limit = 1) {
   }
 }
 
-export async function getUserLocationFromIp() {
+export async function setUserLocationFromIp() {
   const { latitude, longitude, city } = (await axios.get(getLocationUrl)).data;
-  return { latitude, longitude, city };
+  store.commit("setLocation", {
+    latitude,
+    longitude,
+  });
+  store.commit("setLocationName", city);
+}
+
+export async function setUserLocationFromBrowser() {
+  if (!("geolocation" in navigator)) {
+    return;
+  }
+
+  const { latitude, longitude } = await new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  }).coords;
+  store.dispatch("setLocation", { latitude, longitude });
+
+  const name = await getNameFromPosition(store.state.location);
+  if (name) {
+    store.dispatch("setLocationName", name);
+  }
 }

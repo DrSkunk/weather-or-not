@@ -13,8 +13,38 @@ import temperatureScale from "./temperatureScale";
 const baseUrl = "https://api.openweathermap.org/data/2.5/";
 const appid = openWeatherApiKey;
 
-// https://openweathermap.org/api/one-call-api
-export async function oneCall({ latitude, longitude }) {
+/**
+ * @typedef {Object} DayForecast
+ * @property {Date} date - Date of the forecast
+ * @property {string} icon - Weather icon of the forecast {@link https://openweathermap.org/weather-conditions list of weather conditions}
+ * @property {string} description - Forecast text,
+ * @property {Date} sunrise - Date of the sunrise,
+ * @property {Date} sunset - Date of the sunset,
+ * @property {number} pressure - Atmospheric pressure in hPa,
+ * @property {number} humidity - Humidity in %,
+ * @property {number} windDegree - Wind direction in degrees,
+ * @property {string} windDirection - Wind direction in localised cardinal direction,
+ * @property {number} windSpeed - Wind speed in m/s
+ * @property {number} beaufort - Wind speed in Beaufort scale
+ * @property {number} temperature - Temperature in Kelvin
+ * @property {number} minimumTemperature - Minimum temperature in Kelvin
+ * @property {number} maximumTemperature - Maximum temperature in Kelvin
+ */
+
+/**
+ * @typedef {Object} WeatherForecast
+ * @property {Object} daily
+ * @property {number} y - The Y Coordinate
+ */
+
+//
+/**
+ * Get weather forecast based on the given location
+ * {@link https://openweathermap.org/api/one-call-apiSource API reference}
+ * @param {Object} location - The location for which to get the weather forecast
+ * @returns {WeatherForecast} The weather forecast
+ */
+export async function getWeatherForecast({ latitude, longitude }) {
   const { t } = i18n.global;
   const data = {
     appid,
@@ -27,7 +57,7 @@ export async function oneCall({ latitude, longitude }) {
     data.exclude = excludeOptions.join(",");
   }
   const params = new URLSearchParams(data);
-  const endpoint = `${baseUrl}onecall?${params.toString()}`;
+  const endpoint = `${baseUrl}onecall?${params.tostring()}`;
 
   try {
     const { data } = await axios.get(endpoint);
@@ -44,9 +74,9 @@ export async function oneCall({ latitude, longitude }) {
       windDirection: degreeToWindDirection(data.current.wind_deg),
       windSpeed: data.current.wind_speed,
       beaufort: msToBeaufort(data.current.wind_speed),
-      temperature: convertTemperature(data.current.temp),
-      minimumTemperature: convertTemperature(data.daily[0].temp.min),
-      maximumTemperature: convertTemperature(data.daily[0].temp.max),
+      temperature: data.current.temp,
+      minimumTemperature: data.daily[0].temp.min,
+      maximumTemperature: data.daily[0].temp.max,
     };
     result.daily = data.daily.slice(1).map((day) => ({
       date: new Date(day.dt * 1000),
@@ -60,9 +90,9 @@ export async function oneCall({ latitude, longitude }) {
       windDirection: degreeToWindDirection(day.wind_deg),
       windSpeed: day.wind_speed,
       beaufort: msToBeaufort(day.wind_speed),
-      temperature: convertTemperature(day.temp.day),
-      minimumTemperature: convertTemperature(day.temp.min),
-      maximumTemperature: convertTemperature(day.temp.max),
+      temperature: day.temp.day,
+      minimumTemperature: day.temp.min,
+      maximumTemperature: day.temp.max,
     }));
     return result;
   } catch (error) {
@@ -71,7 +101,7 @@ export async function oneCall({ latitude, longitude }) {
   }
 }
 
-function convertTemperature(temperature) {
+export function convertTemperature(temperature) {
   switch (store.state.temperatureScale) {
     case temperatureScale.CELSIUS:
       return kelvinToCelsius(temperature);
