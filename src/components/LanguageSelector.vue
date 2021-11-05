@@ -1,32 +1,35 @@
 <template>
   <div class="flex gap-2">
-    <RadioInput :selected-value="locale" value="en" :on-click="changeLanguage">
-      <div class="px-2">English</div>
-    </RadioInput>
-    <RadioInput :selected-value="locale" value="nl" :on-click="changeLanguage">
-      <div class="px-2">Nederlands</div>
+    <RadioInput
+      v-for="locale in $root.$i18n.availableLocales"
+      :key="locale"
+      :value="locale"
+      :selected-value="$root.$i18n.locale"
+      :on-click="changeLanguage"
+    >
+      <div class="px-2">{{ languages[locale] }}</div>
     </RadioInput>
   </div>
 </template>
 
 <script>
-import { computed } from "@vue/reactivity";
-import { useStore } from "vuex";
-import RadioInput from "./RadioInput.vue";
+import { languages } from "@/i18n";
+import RadioInput from "components/RadioInput.vue";
 
 export default {
   components: {
     RadioInput,
   },
-  setup() {
-    const store = useStore();
+  data() {
     return {
-      locale: computed(() => store.state.locale),
+      languages,
     };
   },
   methods: {
     changeLanguage(language) {
-      this.$store.commit("setLocale", language);
+      console.log(language);
+      console.log(this.$root.$i18n.availableLocales);
+      this.$root.$i18n.locale = language;
     },
   },
 };

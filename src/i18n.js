@@ -34,6 +34,11 @@ const datetimeFormats = {
   },
 };
 
+export const languages = {
+  en: "English",
+  nl: "Nederlands",
+};
+
 export const i18n = createI18n({
   locale: "en",
   globalInjection: true,

@@ -4,7 +4,7 @@
       <LanguageSelector />
       <TemperatureScale />
     </header>
-    <main :key="locale" class="flex flex-col justify-center items-center mt-4">
+    <main class="flex flex-col justify-center items-center mt-4">
       <LocationInput />
       <WeatherInfo />
       <LocateUser />
@@ -16,14 +16,12 @@
 </template>
 
 <script>
-import WeatherInfo from "./components/weatherInfo/WeatherInfo.vue";
-import LocationInput from "./components/LocationInput.vue";
-import LocationMap from "./components/LocationMap.vue";
-import LanguageSelector from "./components/LanguageSelector.vue";
-import { computed } from "@vue/reactivity";
-import { useStore } from "vuex";
-import LocateUser from "./components/LocateUser.vue";
-import TemperatureScale from "./components/TemperatureScale.vue";
+import WeatherInfo from "components/weatherInfo/WeatherInfo.vue";
+import LocationInput from "components/LocationInput.vue";
+import LocationMap from "components/LocationMap.vue";
+import LanguageSelector from "components/LanguageSelector.vue";
+import LocateUser from "components/LocateUser.vue";
+import TemperatureScale from "components/TemperatureScale.vue";
 
 export default {
   components: {
@@ -33,12 +31,6 @@ export default {
     LanguageSelector,
     LocateUser,
     TemperatureScale,
-  },
-  setup() {
-    const store = useStore();
-    return {
-      locale: computed(() => store.state.locale),
-    };
   },
 };
 </script>

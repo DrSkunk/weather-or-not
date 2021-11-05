@@ -1,6 +1,5 @@
 import { createStore } from "vuex";
-import { i18n } from "./i18n";
-import temperatureScale from "./api/temperatureScale";
+import temperatureScale from "api/temperatureScale";
 
 const state = {
   location: {
@@ -16,7 +15,6 @@ const getters = {
   location: (state) => state.location,
   locationName: (state) => state.locationName,
   hasLocation: (state) => Object.values(state.location).some((val) => !!val),
-  locale: (state) => state.locale,
 };
 
 const actions = {
@@ -25,9 +23,6 @@ const actions = {
   },
   setLocationName({ commit }, locationName) {
     commit("setLocationName", locationName);
-  },
-  setLocale({ commit }, locale) {
-    commit("setLocale", locale);
   },
   setTemperatureScale({ commit }, temperatureScale) {
     commit("setTemperatureScale", temperatureScale);
@@ -40,10 +35,6 @@ const mutations = {
   },
   setLocationName: (state, locationName) => {
     state.locationName = locationName;
-  },
-  setLocale: (state, locale) => {
-    i18n.locale = locale;
-    state.locale = locale;
   },
   setTemperatureScale: (state, temperatureScale) => {
     state.temperatureScale = temperatureScale;
