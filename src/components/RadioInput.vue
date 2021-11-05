@@ -1,7 +1,7 @@
 <template>
   <label
     :class="[
-      'flex h-12 items-center hover:bg-gray-100 cursor-pointer rounded',
+      'flex h-12 items-center hover:bg-gray-200 cursor-pointer rounded',
       selectedValue === value ? 'bg-gray-100' : 'bg-gray-50',
     ]"
   >

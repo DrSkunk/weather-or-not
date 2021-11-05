@@ -1,12 +1,24 @@
 <template>
-  <div class="flex flex-wrap justify-center gap-4 m-2">
+  <div
+    class="
+      flex flex-wrap flex-col
+      sm:flex-row
+      items-center
+      justify-center
+      gap-4
+    "
+  >
     <div>
-      <WeatherIcon class="w-32" :icon="icon" :description="description" />
+      <WeatherIcon
+        class="w-24 sm:w-40"
+        :icon="icon"
+        :description="description"
+      />
     </div>
     <div class="flex flex-col text-left">
-      <!-- <div>vr 29 okt</div> -->
+      <div v-text="city" />
       <div class="text-xl">{{ $d(date, "long") }}</div>
-      <div class="text-7xl">{{ temperature }}°</div>
+      <div class="text-4xl sm:text-7xl">{{ temperature }}°</div>
       <div v-text="description" />
     </div>
     <div class="grid grid-cols-2">
@@ -30,6 +42,10 @@ export default {
     WindDirection,
   },
   props: {
+    city: {
+      type: String,
+      required: true,
+    },
     sunrise: {
       type: Date,
       required: true,

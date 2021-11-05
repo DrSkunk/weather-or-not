@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="w-full">
     <div v-if="error">{{ error }}</div>
     <div v-if="loading">loading</div>
     <WeatherInfoBig
       v-if="!loading && weatherInfo.current"
+      :city="locationName"
       :date="weatherInfo.current.date"
       :description="weatherInfo.current.description"
       :icon="weatherInfo.current.icon"
@@ -24,7 +25,7 @@
 
     <div
       v-if="!loading && weatherInfo.daily"
-      class="flex flex-col md:flex-row gap-2 md:divide-y-0 divide-y-2"
+      class="flex flex-col lg:flex-row gap-2 lg:divide-y-0 divide-y-2"
     >
       <WeatherInfoSmall
         v-for="day in weatherInfo.daily"
@@ -77,6 +78,7 @@ export default {
       loading,
       error,
       location: computed(() => store.state.location),
+      locationName: computed(() => store.state.locationName),
     };
   },
   methods: {

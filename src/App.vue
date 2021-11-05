@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto py-4">
+  <div class="container mx-auto pt-4">
     <header class="flex just justify-between px-2 sm:px-0">
       <LanguageSelector />
       <TemperatureScale />

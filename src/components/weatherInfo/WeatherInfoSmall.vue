@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row md:flex-col justify-between py-4 mx-4">
+  <div class="flex flex-row lg:flex-col justify-between py-4 mx-4">
     <div class="text-left flex-1 h-16">
       <div class="text-xl">{{ $d(day, "dayShort") }}</div>
       <div class="text-md">{{ description }}</div>
@@ -8,7 +8,7 @@
       <WeatherIcon :icon="icon" :description="description" />
     </div>
     <div class="flex-1">
-      <div class="ml-auto md:mx-auto grid grid-cols-2 w-20 gap-2 text-xl">
+      <div class="ml-auto lg:mx-auto grid grid-cols-2 w-20 gap-2 text-xl">
         <div class="text-lg">{{ minimumTemperature }}°</div>
         <div class="text-lg">{{ maximumTemperature }}°</div>
         <WindDirection class="w-10" :wind-degree="windDegree" />
