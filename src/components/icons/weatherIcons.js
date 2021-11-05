@@ -16,7 +16,7 @@ import Icon13d from "@bybas/weather-icons/production/line/openweathermap/13d.svg
 import Icon13n from "@bybas/weather-icons/production/line/openweathermap/13n.svg?component";
 import Icon50d from "@bybas/weather-icons/production/line/openweathermap/50d.svg?component";
 import Icon50n from "@bybas/weather-icons/production/line/openweathermap/50n.svg?component";
-import IconWindDirection from "../assets/windDirection.svg?component";
+import IconWindDirection from "assets/windDirection.svg?component";
 
 export {
   Icon01d,

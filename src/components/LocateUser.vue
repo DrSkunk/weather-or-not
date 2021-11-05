@@ -1,7 +1,7 @@
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import { getNameFromPosition, getUserLocationFromIp } from "../api/location";
+import { getNameFromPosition, getUserLocationFromIp } from "api/location";
 
 export default {
   setup() {

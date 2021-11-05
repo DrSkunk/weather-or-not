@@ -41,13 +41,12 @@
 import { computed, ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
 import { useStore } from "vuex";
-import { oneCall } from "../api/weather";
-import WeatherIcon from "./WeatherIcon.vue";
+import { oneCall } from "api/weather";
 import WeatherInfoBig from "./WeatherInfoBig.vue";
 import WeatherInfoSmall from "./WeatherInfoSmall.vue";
 
 export default {
-  components: { WeatherIcon, WeatherInfoBig, WeatherInfoSmall },
+  components: { WeatherInfoBig, WeatherInfoSmall },
   setup() {
     const store = useStore();
     const loading = ref(false);

@@ -12,33 +12,34 @@
     "
   >
     <LocationInput />
+    <TemperatureScale class="absolute right-5 top-5" />
     <WeatherInfo />
     <LocateUser />
     <!-- <LanguageSelector /> -->
     <!-- <div class="h-96">
-      <Map />
+      <LocationMap />
     </div> -->
   </main>
 </template>
 
 <script>
-import WeatherInfo from "./components/WeatherInfo.vue";
+import WeatherInfo from "./components/weatherInfo/WeatherInfo.vue";
 import LocationInput from "./components/LocationInput.vue";
-import Map from "./components/Map.vue";
+import LocationMap from "./components/LocationMap.vue";
 import LanguageSelector from "./components/LanguageSelector.vue";
 import { computed } from "@vue/reactivity";
 import { useStore } from "vuex";
-import WeatherIcon from "./components/WeatherIcon.vue";
 import LocateUser from "./components/LocateUser.vue";
+import TemperatureScale from "./components/TemperatureScale.vue";
 
 export default {
   components: {
     WeatherInfo,
     LocationInput,
-    Map,
+    LocationMap,
     LanguageSelector,
-    WeatherIcon,
     LocateUser,
+    TemperatureScale,
   },
   setup() {
     const store = useStore();

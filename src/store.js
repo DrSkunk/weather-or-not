@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { i18n } from "./i18n";
+import temperatureScale from "./api/temperatureScale";
 
 const state = {
   location: {
@@ -7,7 +8,8 @@ const state = {
     latitude: null,
   },
   locationName: "",
-  locale: "en-US",
+  locale: "en",
+  temperatureScale: temperatureScale.CELSIUS,
 };
 
 const getters = {

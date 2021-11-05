@@ -61,7 +61,7 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import { SearchIcon } from "@heroicons/vue/solid";
-import { search } from "../api/location";
+import { search } from "api/location";
 
 function truncate(text) {
   const length = 35;

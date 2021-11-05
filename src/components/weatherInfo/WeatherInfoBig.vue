@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import { IconWindDirection } from "./weatherIcons";
-import WeatherIcon from "./WeatherIcon.vue";
+import { IconWindDirection } from "components/icons/weatherIcons";
+import WeatherIcon from "components/icons/WeatherIcon.vue";
 
 export default {
   components: {
