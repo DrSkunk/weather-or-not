@@ -29,7 +29,7 @@ Copy `.env.example` to `.env.local` and fill in your details:
 
 This application is built with [Vite](https://vitejs.dev/), [Vue3](https://v3.vuejs.org/) and [TailwindCSS](https://tailwindcss.com/).
 
-Icons used are a combination of [Heroicons](https://heroicons.com/), [Meteocons](https://basmilius.github.io/weather-icons/) and self-made icons.
+Icons and logo used are a combination of [Heroicons](https://heroicons.com/), [Meteocons](https://basmilius.github.io/weather-icons/) and self-made icons.
 
 The following development commands are available:
 
