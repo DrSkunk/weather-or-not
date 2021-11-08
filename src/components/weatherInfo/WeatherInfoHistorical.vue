@@ -44,10 +44,9 @@ export default {
     const forecast = new ref(null);
 
     onMounted(async () => {
-      const { location } = props;
-      console.log(props);
+      const { day, location } = props;
       try {
-        const data = await getHistoricalWeatherForecast(props.day, location);
+        const data = await getHistoricalWeatherForecast(day, location);
         forecast.value = data;
       } catch (err) {
         error.value = err;

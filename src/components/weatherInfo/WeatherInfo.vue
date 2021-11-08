@@ -79,11 +79,7 @@ import { computed, ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { subDays } from "date-fns";
-import {
-  getHistoricalWeatherForecast,
-  getWeatherForecast,
-  convertTemperature,
-} from "../../api/weather";
+import { getWeatherForecast, convertTemperature } from "../../api/weather";
 import WeatherInfoBig from "./WeatherInfoBig.vue";
 import WeatherInfoSmall from "./WeatherInfoSmall.vue";
 import WeatherInfoHistorical from "./WeatherInfoHistorical.vue";
@@ -106,11 +102,6 @@ export default {
       if (store.getters.hasLocation) {
         try {
           loading.value = true;
-          const oldData = await getHistoricalWeatherForecast(
-            subDays(new Date(), 1),
-            store.getters.location
-          );
-          console.log(oldData);
           const data = await getWeatherForecast(store.getters.location);
           weatherInfo.value = data;
         } catch (err) {
