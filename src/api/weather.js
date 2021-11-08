@@ -27,8 +27,8 @@ const appid = openWeatherApiKey;
  * @property {number} windSpeed - Wind speed in m/s
  * @property {number} beaufort - Wind speed in Beaufort scale
  * @property {number} temperature - Temperature in Kelvin
- * @property {number} minimumTemperature - Minimum temperature in Kelvin
- * @property {number} maximumTemperature - Maximum temperature in Kelvin
+ * @property {number} [minimumTemperature] - Minimum temperature in Kelvin
+ * @property {number} [maximumTemperature] - Maximum temperature in Kelvin
  */
 
 /**
@@ -42,7 +42,7 @@ const appid = openWeatherApiKey;
  * {@link https://openweathermap.org/api/one-call-apiSource API reference}
  * @param {Object} location - The location for which to get the weather forecast
  * @throws Will throw error on invalid key, location or locale
- * @returns {WeatherForecast} The weather forecast
+ * @returns {WeatherForecast} The weather forecast for today and the next 7 days
  */
 export async function getWeatherForecast({ latitude, longitude }) {
   const { t } = i18n.global;
@@ -62,39 +62,69 @@ export async function getWeatherForecast({ latitude, longitude }) {
   try {
     const { data } = await axios.get(endpoint);
     const result = {};
-    result.current = {
-      date: new Date(data.current.dt * 1000),
-      icon: data.current.weather[0].icon,
-      description: data.current.weather[0].description,
-      sunrise: new Date(data.current.sunrise * 1000),
-      sunset: new Date(data.current.sunset * 1000),
-      pressure: data.current.pressure,
-      humidity: data.current.humidity,
-      windDegree: data.current.wind_deg,
-      windDirection: degreeToWindDirection(data.current.wind_deg),
-      windSpeed: data.current.wind_speed,
-      beaufort: msToBeaufort(data.current.wind_speed),
-      temperature: data.current.temp,
-      minimumTemperature: data.daily[0].temp.min,
-      maximumTemperature: data.daily[0].temp.max,
-    };
-    result.daily = data.daily.slice(1).map((day) => ({
-      date: new Date(day.dt * 1000),
-      icon: day.weather[0].icon,
-      description: day.weather[0].description,
-      sunrise: new Date(day.sunrise * 1000),
-      sunset: new Date(day.sunset * 1000),
-      pressure: day.pressure,
-      humidity: day.humidity,
-      windDegree: day.wind_deg,
-      windDirection: degreeToWindDirection(day.wind_deg),
-      windSpeed: day.wind_speed,
-      beaufort: msToBeaufort(day.wind_speed),
-      temperature: day.temp.day,
-      minimumTemperature: day.temp.min,
-      maximumTemperature: day.temp.max,
-    }));
+    result.current = parseDayForecast(data.current);
+    result.daily = data.daily.slice(1).map(parseDayForecast);
     return result;
+  } catch (error) {
+    console.error(error);
+    throw new Error("An error occured while fetching the weather forecast.");
+  }
+}
+
+/**
+ * Convert OpenWeather API response into the internal day forecast object
+ * @param {Object} dayForecast - The day forecast to parse
+ * @returns {DayForecast} The parsed day forecast
+ */
+function parseDayForecast(dayForecast) {
+  const result = {
+    date: new Date(dayForecast.dt * 1000),
+    icon: dayForecast.weather[0].icon,
+    description: dayForecast.weather[0].description,
+    sunrise: new Date(dayForecast.sunrise * 1000),
+    sunset: new Date(dayForecast.sunset * 1000),
+    pressure: dayForecast.pressure,
+    humidity: dayForecast.humidity,
+    windDegree: dayForecast.wind_deg,
+    windDirection: degreeToWindDirection(dayForecast.wind_deg),
+    windSpeed: dayForecast.wind_speed,
+    beaufort: msToBeaufort(dayForecast.wind_speed),
+    temperature: dayForecast.temp,
+  };
+  if (dayForecast.temp) {
+    result.minimumTemperature = dayForecast.temp.min;
+    result.maximumTemperature = dayForecast.temp.max;
+  }
+  return result;
+}
+
+/**
+ * Get weather forecast of a day in the past five days based on the given location
+ * {@link https://openweathermap.org/api/one-call-apiSource API reference}
+ * @param {Date} date - The date for which to get the weather forecast
+ * @param {Object} location - The location for which to get the weather forecast
+ * @throws Will throw error on invalid key, date, location or locale
+ * @returns {DayForecast} The weather forecast for the given day and location
+ */
+export async function getHistoricalWeatherForecast(
+  date,
+  { latitude, longitude }
+) {
+  const { t } = i18n.global;
+  const data = {
+    appid,
+    lat: latitude,
+    lon: longitude,
+    dt: Math.round(date / 1000),
+    lang: t("openweathermap.locale"),
+  };
+
+  const params = new URLSearchParams(data).toString();
+  const endpoint = `${baseUrl}onecall/timemachine?${params}`;
+
+  try {
+    const { data } = await axios.get(endpoint);
+    return parseDayForecast(data.current);
   } catch (error) {
     console.error(error);
     throw new Error("An error occured while fetching the weather forecast.");

@@ -9,28 +9,20 @@
         gap-4
       "
     >
-      <div>
-        <WeatherIcon
-          class="w-24 sm:w-40"
-          :icon="icon"
-          :description="description"
-        />
-      </div>
+      <WeatherIcon
+        class="w-24 sm:w-40"
+        :icon="icon"
+        :description="description"
+      />
       <div class="flex flex-col text-left">
-        <div v-text="city" />
+        <div class="max-w-xs" v-text="city" />
         <div class="text-xl">{{ $d(date, "long") }}</div>
         <div class="text-4xl sm:text-7xl">{{ temperature }}°</div>
         <div v-text="description" />
       </div>
-      <div class="grid grid-cols-2 gap-x-2">
-        <div>{{ $t("max") }}</div>
-        <div>{{ maximumTemperature }}°</div>
-        <div>{{ $t("min") }}</div>
-        <div>{{ minimumTemperature }}°</div>
-      </div>
     </div>
     <button class="flex items-center" @click="showDetails = !showDetails">
-      <span>More Info</span>
+      <span>{{ $t("moreInfo") }}</span>
       <ChevronDownIcon
         :class="['w-8', showDetails ? 'transform rotate-90' : '']"
       />

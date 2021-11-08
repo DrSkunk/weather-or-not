@@ -25,5 +25,7 @@
   "mapbox": {
     "locale": "en-US"
   },
+  "moreInfo": "More info",
+  "historical": "Weather forecast of the past five days",
   "whereAreYou": "Where are you?"
 }

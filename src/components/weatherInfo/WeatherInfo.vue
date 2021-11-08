@@ -50,6 +50,29 @@
         :beaufort="day.beaufort"
       />
     </div>
+    <h2
+      class="text-center text- border-t-2 border-b-2 max-w-sm mx-auto px-4 py-2"
+    >
+      {{ $t("historical") }}
+    </h2>
+    <div
+      v-if="hasLocation"
+      class="
+        flex flex-col
+        lg:flex-row
+        justify-center
+        gap-2
+        lg:divide-y-0
+        divide-y-2
+      "
+    >
+      <WeatherInfoHistorical
+        v-for="day in previousDays"
+        :key="day"
+        :day="day"
+        :location="location"
+      />
+    </div>
   </div>
 </template>
 
@@ -57,12 +80,18 @@
 import { computed, ref } from "@vue/reactivity";
 import { watchEffect } from "@vue/runtime-core";
 import { useStore } from "vuex";
-import { getWeatherForecast, convertTemperature } from "../../api/weather";
+import { subDays } from "date-fns";
+import {
+  getHistoricalWeatherForecast,
+  getWeatherForecast,
+  convertTemperature,
+} from "../../api/weather";
 import WeatherInfoBig from "./WeatherInfoBig.vue";
 import WeatherInfoSmall from "./WeatherInfoSmall.vue";
+import WeatherInfoHistorical from "./WeatherInfoHistorical.vue";
 
 export default {
-  components: { WeatherInfoBig, WeatherInfoSmall },
+  components: { WeatherInfoBig, WeatherInfoSmall, WeatherInfoHistorical },
   setup() {
     const store = useStore();
     const loading = ref(false);
@@ -73,6 +102,11 @@ export default {
       if (store.getters.hasLocation) {
         try {
           loading.value = true;
+          const oldData = await getHistoricalWeatherForecast(
+            subDays(new Date(), 1),
+            store.getters.location
+          );
+          console.log(oldData);
           const data = await getWeatherForecast(store.getters.location);
           weatherInfo.value = data;
           loading.value = false;
@@ -82,12 +116,20 @@ export default {
       }
     });
 
+    const previousDays = computed(() => {
+      const today = new Date();
+      return [1, 2, 3, 4, 5].map((daysToSubtract) =>
+        subDays(today, daysToSubtract)
+      );
+    });
     return {
       weatherInfo,
       loading,
       error,
       location: computed(() => store.state.location),
       locationName: computed(() => store.state.locationName),
+      hasLocation: computed(() => store.getters.hasLocation),
+      previousDays,
     };
   },
   methods: {
