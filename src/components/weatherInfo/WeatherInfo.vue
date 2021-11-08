@@ -52,7 +52,7 @@
         :beaufort="day.beaufort"
       />
     </div>
-    <TitleLine> {{ $t("historical") }} </TitleLine>
+    <TitleLine v-if="hasLocation"> {{ $t("historical") }} </TitleLine>
     <div
       v-if="hasLocation"
       class="

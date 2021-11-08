@@ -30,7 +30,7 @@ export async function getNameFromPosition(location) {
   if (data.features.length === 0) {
     return null;
   }
-  return data.features[0].context[1].text;
+  return data.features[0].place_name;
 }
 
 /**

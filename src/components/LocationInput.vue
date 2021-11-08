@@ -15,7 +15,7 @@
     >
       <SearchIcon class="w-4 text-gray-500 absolute" />
       <input
-        v-model="locationName"
+        v-model="locationNameInput"
         type="text"
         class="w-full pl-6 bg-transparent z-10"
         :placeholder="$t('whereAreYou')"
@@ -72,19 +72,24 @@ export default {
     const store = useStore();
     return {
       location: computed(() => store.state.location),
+      locationName: computed(() => store.state.locationName),
     };
   },
 
   data() {
     return {
-      locationName: "",
+      locationNameInput: "",
       results: [],
       selectedResult: -1,
       shouldSearch: true,
     };
   },
   watch: {
-    locationName: async function (query) {
+    locationName: function () {
+      this.shouldSearch = false;
+      this.locationNameInput = this.locationName;
+    },
+    locationNameInput: async function (query) {
       if (query.length === 0 || !this.shouldSearch) {
         this.shouldSearch = true;
         return;
@@ -105,7 +110,6 @@ export default {
       this.$store.dispatch("setLocation", coordinates);
       this.$store.dispatch("setLocationName", name);
       this.results = [];
-      this.locationName = name;
       this.shouldSearch = false;
     },
     selectPreviousResult() {

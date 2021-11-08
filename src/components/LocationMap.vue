@@ -5,6 +5,7 @@
 <script>
 import { ref, onMounted, computed } from "vue";
 import { useStore } from "vuex";
+import { getNameFromPosition } from "../api/location";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { defaultZoomLevel, mapboxToken } from "../api/config";
@@ -25,6 +26,14 @@ export default {
       });
 
       map.value.on("load", () => {
+        map.value.on("click", async function (e) {
+          store.commit("setLocation", {
+            latitude: e.lngLat.lat,
+            longitude: e.lngLat.lng,
+          });
+          const name = await getNameFromPosition(store.state.location);
+          store.commit("setLocationName", name);
+        });
         // Check if all location values are set
         if (store.getters.hasLocation) {
           const { longitude, latitude } = location.value;
