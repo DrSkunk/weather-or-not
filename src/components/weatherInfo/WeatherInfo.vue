@@ -24,7 +24,7 @@
       :wind-speed="weatherInfo.current.windSpeed"
       :beaufort="weatherInfo.current.beaufort"
     />
-
+    <TitleLine> {{ $t("daily") }} </TitleLine>
     <div
       v-if="!loading && weatherInfo.daily"
       class="
@@ -50,11 +50,7 @@
         :beaufort="day.beaufort"
       />
     </div>
-    <h2
-      class="text-center text- border-t-2 border-b-2 max-w-sm mx-auto px-4 py-2"
-    >
-      {{ $t("historical") }}
-    </h2>
+    <TitleLine> {{ $t("historical") }} </TitleLine>
     <div
       v-if="hasLocation"
       class="
@@ -89,9 +85,15 @@ import {
 import WeatherInfoBig from "./WeatherInfoBig.vue";
 import WeatherInfoSmall from "./WeatherInfoSmall.vue";
 import WeatherInfoHistorical from "./WeatherInfoHistorical.vue";
+import TitleLine from "../TitleLine.vue";
 
 export default {
-  components: { WeatherInfoBig, WeatherInfoSmall, WeatherInfoHistorical },
+  components: {
+    WeatherInfoBig,
+    WeatherInfoSmall,
+    WeatherInfoHistorical,
+    TitleLine,
+  },
   setup() {
     const store = useStore();
     const loading = ref(false);

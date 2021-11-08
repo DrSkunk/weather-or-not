@@ -7,7 +7,7 @@
     <main class="flex flex-col justify-center items-center mt-4">
       <LocationInput />
       <WeatherInfo />
-      <LocationMap class="h-96 w-full" />
+      <LocationMap class="h-96 w-full mt-4" />
     </main>
   </div>
 </template>

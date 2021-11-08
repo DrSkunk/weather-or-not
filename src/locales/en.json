@@ -26,6 +26,7 @@
     "locale": "en-US"
   },
   "moreInfo": "More info",
-  "historical": "Weather forecast of the past five days",
+  "daily": "Weather forecast for the next days",
+  "historical": "Weather data of the past five days",
   "whereAreYou": "Where are you?"
 }

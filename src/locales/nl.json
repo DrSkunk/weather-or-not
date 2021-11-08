@@ -26,6 +26,7 @@
     "locale": "nl-BE"
   },
   "moreInfo": "Meer info",
-  "historical": "Weervoorspellingen van de afgelopen vijf dagen",
+  "daily": "Weersvoorspellingen van de volgende dagen",
+  "historical": "Weerscondities van de afgelopen vijf dagen",
   "whereAreYou": "Waar ben je?"
 }
