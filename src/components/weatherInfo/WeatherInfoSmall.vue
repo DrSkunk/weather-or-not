@@ -9,8 +9,8 @@
     </div>
     <div class="flex-1">
       <div class="ml-auto lg:mx-auto grid grid-cols-2 w-20 gap-2 text-xl">
-        <div class="text-lg">{{ minimumTemperature }}°</div>
         <div class="text-lg">{{ maximumTemperature }}°</div>
+        <div class="text-lg">{{ minimumTemperature }}°</div>
         <WindDirection class="w-10" :wind-degree="windDegree" />
         <div class="text-left">
           <div>{{ windDirection }}</div>
