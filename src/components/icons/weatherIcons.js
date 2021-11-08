@@ -19,6 +19,23 @@ import Icon50n from "@bybas/weather-icons/production/line/openweathermap/50n.svg
 import IconCelsius from "@bybas/weather-icons/production/line/all/celsius.svg?component";
 import IconFahrenheit from "@bybas/weather-icons/production/line/all/fahrenheit.svg?component";
 import IconWindDirection from "../../assets/windDirection.svg?component";
+import IconHumidity from "@bybas/weather-icons/production/line/all/humidity.svg?component";
+import IconBarometer from "@bybas/weather-icons/production/line/all/barometer.svg?component";
+import IconSunrise from "@bybas/weather-icons/production/line/all/sunrise.svg?component";
+import IconSunset from "@bybas/weather-icons/production/line/all/sunset.svg?component";
+import IconBeaufort0 from "@bybas/weather-icons/production/line/all/wind-beaufort-0.svg?component";
+import IconBeaufort1 from "@bybas/weather-icons/production/line/all/wind-beaufort-1.svg?component";
+import IconBeaufort2 from "@bybas/weather-icons/production/line/all/wind-beaufort-2.svg?component";
+import IconBeaufort3 from "@bybas/weather-icons/production/line/all/wind-beaufort-3.svg?component";
+import IconBeaufort4 from "@bybas/weather-icons/production/line/all/wind-beaufort-4.svg?component";
+import IconBeaufort5 from "@bybas/weather-icons/production/line/all/wind-beaufort-5.svg?component";
+import IconBeaufort6 from "@bybas/weather-icons/production/line/all/wind-beaufort-6.svg?component";
+import IconBeaufort7 from "@bybas/weather-icons/production/line/all/wind-beaufort-7.svg?component";
+import IconBeaufort8 from "@bybas/weather-icons/production/line/all/wind-beaufort-8.svg?component";
+import IconBeaufort9 from "@bybas/weather-icons/production/line/all/wind-beaufort-9.svg?component";
+import IconBeaufort10 from "@bybas/weather-icons/production/line/all/wind-beaufort-10.svg?component";
+import IconBeaufort11 from "@bybas/weather-icons/production/line/all/wind-beaufort-11.svg?component";
+import IconBeaufort12 from "@bybas/weather-icons/production/line/all/wind-beaufort-12.svg?component";
 
 export {
   Icon01d,
@@ -42,4 +59,21 @@ export {
   IconCelsius,
   IconFahrenheit,
   IconWindDirection,
+  IconHumidity,
+  IconBarometer,
+  IconSunrise,
+  IconSunset,
+  IconBeaufort0,
+  IconBeaufort1,
+  IconBeaufort2,
+  IconBeaufort3,
+  IconBeaufort4,
+  IconBeaufort5,
+  IconBeaufort6,
+  IconBeaufort7,
+  IconBeaufort8,
+  IconBeaufort9,
+  IconBeaufort10,
+  IconBeaufort11,
+  IconBeaufort12,
 };

@@ -3,6 +3,11 @@ import messages from "@intlify/vite-plugin-vue-i18n/messages";
 
 const datetimeFormats = {
   en: {
+    time: {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    },
     dayShort: {
       weekday: "short",
     },
@@ -18,6 +23,11 @@ const datetimeFormats = {
     },
   },
   nl: {
+    time: {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: false,
+    },
     dayShort: {
       weekday: "short",
     },

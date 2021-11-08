@@ -18,14 +18,23 @@
       :sunrise="weatherInfo.current.sunrise"
       :sunset="weatherInfo.current.sunset"
       :humidity="weatherInfo.current.humidity"
+      :pressure="weatherInfo.current.pressure"
       :wind-degree="weatherInfo.current.windDegree"
       :wind-direction="weatherInfo.current.windDirection"
       :wind-speed="weatherInfo.current.windSpeed"
+      :beaufort="weatherInfo.current.beaufort"
     />
 
     <div
       v-if="!loading && weatherInfo.daily"
-      class="flex flex-col lg:flex-row justify-center gap-2 lg:divide-y-0 divide-y-2"
+      class="
+        flex flex-col
+        lg:flex-row
+        justify-center
+        gap-2
+        lg:divide-y-0
+        divide-y-2
+      "
     >
       <WeatherInfoSmall
         v-for="day in weatherInfo.daily"

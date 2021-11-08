@@ -1,38 +1,80 @@
 <template>
-  <div
-    class="
-      flex flex-wrap flex-col
-      sm:flex-row
-      items-center
-      justify-center
-      gap-4
-    "
-  >
-    <div>
-      <WeatherIcon
-        class="w-24 sm:w-40"
-        :icon="icon"
-        :description="description"
+  <div class="flex flex-col items-center">
+    <div
+      class="
+        flex flex-wrap flex-col
+        sm:flex-row
+        items-center
+        justify-center
+        gap-4
+      "
+    >
+      <div>
+        <WeatherIcon
+          class="w-24 sm:w-40"
+          :icon="icon"
+          :description="description"
+        />
+      </div>
+      <div class="flex flex-col text-left">
+        <div v-text="city" />
+        <div class="text-xl">{{ $d(date, "long") }}</div>
+        <div class="text-4xl sm:text-7xl">{{ temperature }}°</div>
+        <div v-text="description" />
+      </div>
+      <div class="grid grid-cols-2 gap-x-2">
+        <div>{{ $t("max") }}</div>
+        <div>{{ maximumTemperature }}°</div>
+        <div>{{ $t("min") }}</div>
+        <div>{{ minimumTemperature }}°</div>
+      </div>
+    </div>
+    <button class="flex items-center" @click="showDetails = !showDetails">
+      <span>More Info</span>
+      <ChevronDownIcon
+        :class="['w-8', showDetails ? 'transform rotate-90' : '']"
       />
-    </div>
-    <div class="flex flex-col text-left">
-      <div v-text="city" />
-      <div class="text-xl">{{ $d(date, "long") }}</div>
-      <div class="text-4xl sm:text-7xl">{{ temperature }}°</div>
-      <div v-text="description" />
-    </div>
-    <div class="grid grid-cols-2">
-      <div>{{ $t("max") }}</div>
-      <div>{{ maximumTemperature }}°</div>
-      <div>{{ $t("min") }}</div>
-      <div>{{ minimumTemperature }}°</div>
-      <WindDirection class="h-12" :wind-degree="windDegree" />
-      <div v-text="windDirection" />
-    </div>
+    </button>
+    <transition
+      enter-active-class="transition duration-200 ease-out"
+      enter-from-class="translate-y-1 opacity-0"
+      enter-to-class="translate-y-0 opacity-100"
+      leave-active-class="transition duration-150 ease-in"
+      leave-from-class="translate-y-0 opacity-100"
+      leave-to-class="translate-y-1 opacity-0"
+    >
+      <div
+        v-if="showDetails"
+        class="grid grid-cols-4 w-96 border bg-white z-10"
+      >
+        <WeatherIcon class="w-24" icon="Sunrise" description="Sunrise" />
+        <div class="flex items-center justify-center">
+          {{ $d(sunrise, "time") }}
+        </div>
+        <WeatherIcon class="w-24" icon="Sunset" description="Sunset" />
+        <div class="flex items-center justify-center">
+          {{ $d(sunset, "time") }}
+        </div>
+        <WeatherIcon class="w-24" icon="Barometer" description="Barometer" />
+        <div class="flex items-center justify-center">{{ pressure }} hPa</div>
+        <WeatherIcon class="w-24" icon="Humidity" description="Humidity" />
+        <div class="flex items-center justify-center">{{ humidity }} %</div>
+        <WeatherIcon
+          class="w-24"
+          :icon="`Beaufort${beaufort}`"
+          :description="`${beaufort} Beaufort`"
+        />
+        <div class="flex items-center justify-center">{{ windSpeed }} m/s</div>
+        <WindDirection class="h-24" :wind-degree="windDegree" />
+        <div class="flex items-center justify-center">{{ windDirection }}</div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
+import { ChevronDownIcon } from "@heroicons/vue/solid";
 import WeatherIcon from "../icons/WeatherIcon.vue";
 import WindDirection from "../icons/WindDirection.vue";
 
@@ -40,6 +82,7 @@ export default {
   components: {
     WeatherIcon,
     WindDirection,
+    ChevronDownIcon,
   },
   props: {
     city: {
@@ -94,6 +137,21 @@ export default {
       type: Number,
       required: true,
     },
+    beaufort: {
+      type: Number,
+      required: true,
+    },
+    pressure: {
+      type: Number,
+      required: true,
+    },
+  },
+  setup() {
+    const showDetails = ref(false);
+
+    return {
+      showDetails,
+    };
   },
 };
 </script>
