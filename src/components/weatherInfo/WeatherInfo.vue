@@ -24,7 +24,9 @@
       :wind-speed="weatherInfo.current.windSpeed"
       :beaufort="weatherInfo.current.beaufort"
     />
-    <TitleLine> {{ $t("daily") }} </TitleLine>
+    <TitleLine v-if="!loading && weatherInfo.daily">
+      {{ $t("daily") }}
+    </TitleLine>
     <div
       v-if="!loading && weatherInfo.daily"
       class="
