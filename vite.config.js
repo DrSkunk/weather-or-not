@@ -15,6 +15,7 @@ export default defineConfig({
       // you need to set i18n resource including paths !
       include: path.resolve("./src/locales/**"),
     }),
-    svgLoader(),
+    // Disable SVGO because it removes clip-path from svg
+    svgLoader({ svgo: false }),
   ],
 });
