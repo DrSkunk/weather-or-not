@@ -20,8 +20,6 @@ import LanguageSelector from "./components/LanguageSelector.vue";
 import TemperatureScale from "./components/TemperatureScale.vue";
 import { setUserLocationFromIp } from "./api/location";
 
-setUserLocationFromIp();
-
 export default {
   components: {
     WeatherInfo,
