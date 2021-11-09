@@ -1,8 +1,7 @@
 <template>
-  <IconWindDirection
-    :style="`transform: rotate(${180 + windDegree}deg)`"
-    :alt="`${windDegree}°`"
-  />
+  <div :style="`transform: rotate(${180 + windDegree}deg)`">
+    <IconWindDirection :alt="`${windDegree}°`" />
+  </div>
 </template>
 <script>
 import { IconWindDirection } from "./weatherIcons";
