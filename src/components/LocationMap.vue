@@ -38,10 +38,14 @@ export default {
         if (store.getters.hasLocation) {
           const { longitude, latitude } = location.value;
           const coordinates = [longitude, latitude];
+          if (marker.value) {
+            marker.value.setLngLat(coordinates);
+          } else {
+            marker.value = new mapboxgl.Marker()
+              .setLngLat(coordinates)
+              .addTo(map.value);
+          }
           map.value.flyTo({ center: coordinates, zoom: defaultZoomLevel });
-          marker.value = new mapboxgl.Marker()
-            .setLngLat(coordinates)
-            .addTo(map.value);
         }
       });
     });
