@@ -1,14 +1,7 @@
 <template>
-  <div class="container mx-auto py-4">
+  <div class="container mx-auto px-2 py-4">
     <header
-      class="
-        flex flex-wrap
-        justify-center
-        sm:justify-between
-        gap-2
-        px-2
-        sm:px-0
-      "
+      class="flex flex-wrap justify-center sm:justify-between gap-2 sm:px-0"
     >
       <LanguageSelector />
       <TemperatureScale />
@@ -18,7 +11,6 @@
         <LocationInput />
         <BrowserLocationButton />
       </div>
-
       <WeatherInfo />
       <LocationMap class="h-96 w-full mt-4" />
     </main>

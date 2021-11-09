@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row lg:flex-col justify-between py-4 mx-4">
+  <div class="flex flex-row lg:flex-col justify-between py-4 mx-2">
     <div class="text-left flex-1 h-16">
       <div class="text-xl">{{ $d(day, "dayShort") }}</div>
       <div class="text-md">{{ description }}</div>
