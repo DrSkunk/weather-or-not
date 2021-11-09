@@ -3,6 +3,7 @@
     v-if="!loading && !error && forecast"
     :day="forecast.date"
     :description="forecast.description"
+    :temperature="convertTemperature(forecast.temperature)"
     :icon="forecast.icon"
     :wind-degree="forecast.windDegree"
     :wind-direction="forecast.windDirection"
@@ -21,7 +22,10 @@
 <script>
 import { onMounted } from "vue";
 import { ref } from "@vue/reactivity";
-import { getHistoricalWeatherForecast } from "../../api/weather";
+import {
+  getHistoricalWeatherForecast,
+  convertTemperature,
+} from "../../api/weather";
 import WeatherInfoSmall from "./WeatherInfoSmall.vue";
 
 export default {
@@ -59,6 +63,9 @@ export default {
       error,
       forecast,
     };
+  },
+  methods: {
+    convertTemperature,
   },
 };
 </script>

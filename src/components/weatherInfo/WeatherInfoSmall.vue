@@ -8,11 +8,14 @@
       <WeatherIcon :icon="icon" :description="description" />
     </div>
     <div class="flex-1">
+      <div v-if="temperature !== undefined" class="text-lg text-center">
+        {{ temperature }}°
+      </div>
       <div class="ml-auto lg:mx-auto grid grid-cols-2 w-20 gap-2 text-xl">
-        <div v-if="maximumTemperature" class="text-lg">
+        <div v-if="maximumTemperature !== undefined" class="text-lg">
           {{ maximumTemperature }}°
         </div>
-        <div v-if="minimumTemperature" class="text-lg">
+        <div v-if="minimumTemperature !== undefined" class="text-lg">
           {{ minimumTemperature }}°
         </div>
         <WindDirection class="w-10" :wind-degree="windDegree" />
@@ -46,6 +49,11 @@ export default {
     icon: {
       type: String,
       required: true,
+    },
+    temperature: {
+      type: Number,
+      required: false,
+      default: undefined,
     },
     minimumTemperature: {
       type: Number,
