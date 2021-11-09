@@ -6,18 +6,26 @@
         bg-gray-100
         border-b-4 border-gray-300
         rounded-tl-xl rounded-br-xl
-        px-4
-        py-2
         relative
         flex
         items-center
       "
     >
-      <SearchIcon class="w-4 text-gray-500 absolute" />
+      <SearchIcon class="w-4 ml-4 text-gray-500 absolute" />
       <input
         v-model="locationNameInput"
         type="text"
-        class="w-full pl-6 bg-transparent z-10"
+        class="
+          w-full
+          pl-12
+          pr-4
+          py-2
+          bg-transparent
+          z-10
+          active:rounded-tl-xl active:rounded-br-xl
+          focus:rounded-tl-xl focus:rounded-br-xl
+          selected:rounded
+        "
         :placeholder="$t('whereAreYou')"
         @keydown.arrow-up="selectPreviousResult"
         @keydown.arrow-down="selectNextResult"
