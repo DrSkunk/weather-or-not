@@ -7,9 +7,9 @@
     >
       <input
         type="radio"
-        class=""
         :name="name"
         :value="value"
+        :checked="selectedValue === value"
         @click="onClick(value)"
       />
       <slot />
