@@ -84,9 +84,11 @@ export async function setUserLocationFromBrowser() {
     return;
   }
 
-  const { latitude, longitude } = await new Promise(function (resolve, reject) {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  }).coords;
+  const { latitude, longitude } = (
+    await new Promise(function (resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    })
+  ).coords;
   store.dispatch("setLocation", { latitude, longitude });
 
   const name = await getNameFromPosition(store.state.location);

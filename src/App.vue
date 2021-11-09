@@ -14,7 +14,11 @@
       <TemperatureScale />
     </header>
     <main class="flex flex-col justify-center items-center mt-4">
-      <LocationInput />
+      <div class="inline-flex gap-2">
+        <LocationInput />
+        <BrowserLocationButton />
+      </div>
+
       <WeatherInfo />
       <LocationMap class="h-96 w-full mt-4" />
     </main>
@@ -27,6 +31,7 @@ import LocationInput from "./components/LocationInput.vue";
 import LocationMap from "./components/LocationMap.vue";
 import LanguageSelector from "./components/LanguageSelector.vue";
 import TemperatureScale from "./components/TemperatureScale.vue";
+import BrowserLocationButton from "./components/BrowserLocationButton.vue";
 import { setUserLocationFromIp } from "./api/location";
 import { useStore } from "vuex";
 
@@ -37,6 +42,7 @@ export default {
     LocationMap,
     LanguageSelector,
     TemperatureScale,
+    BrowserLocationButton,
   },
   setup() {
     setUserLocationFromIp();

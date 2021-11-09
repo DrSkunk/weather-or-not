@@ -11,7 +11,7 @@
         items-center
       "
     >
-      <SearchIcon class="w-4 ml-4 text-gray-500 absolute" />
+      <SearchIcon class="w-5 left-4 text-gray-500 absolute" />
       <input
         v-model="locationNameInput"
         type="text"
@@ -100,6 +100,7 @@ export default {
     locationNameInput: async function (query) {
       if (query.length === 0 || !this.shouldSearch) {
         this.shouldSearch = true;
+        this.results = [];
         return;
       }
       this.results = (await search(query)).map(({ name, coordinates }) => {
