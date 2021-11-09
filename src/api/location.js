@@ -121,6 +121,6 @@ async function doRequest(queryParams, limit = 1) {
     return data;
   } catch (error) {
     console.error(error);
-    throw new Error("Invalid API request");
+    throw new Error(t("mapbox.apiError"));
   }
 }

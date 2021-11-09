@@ -20,13 +20,16 @@
   "min": "min",
   "max": "max",
   "openweathermap": {
-    "locale": "nl"
+    "locale": "nl",
+    "apiError": "Er is een fout gebeurd bij het ophalen van de weersgegevens"
   },
   "mapbox": {
-    "locale": "nl-BE"
+    "locale": "nl-BE",
+    "apiError": "Er is een fout gebeurd bij het ophalen van de locatiegegevens"
   },
   "moreInfo": "Meer info",
   "daily": "Weersvoorspellingen van de volgende dagen",
   "historical": "Weerscondities van de afgelopen vijf dagen",
-  "whereAreYou": "Waar ben je?"
+  "whereAreYou": "Waar ben je?",
+  "loading": "Aan het laden"
 }

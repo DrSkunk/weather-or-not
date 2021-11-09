@@ -67,7 +67,7 @@ export async function getWeatherForecast({ latitude, longitude }) {
     return result;
   } catch (error) {
     console.error(error);
-    throw new Error("An error occured while fetching the weather forecast.");
+    throw new Error(t("openweathermap.apiError"));
   }
 }
 
@@ -127,7 +127,7 @@ export async function getHistoricalWeatherForecast(
     return parseDayForecast(data.current);
   } catch (error) {
     console.error(error);
-    throw new Error("An error occured while fetching the weather forecast.");
+    throw new Error(t("openweathermap.apiError"));
   }
 }
 

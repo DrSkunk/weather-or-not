@@ -20,13 +20,16 @@
   "min": "min",
   "max": "max",
   "openweathermap": {
-    "locale": "en"
+    "locale": "en",
+    "apiError": "An error occured while fetching the weather data"
   },
   "mapbox": {
-    "locale": "en-US"
+    "locale": "en-US",
+    "apiError": "An error occured while fetching the location data"
   },
   "moreInfo": "More info",
   "daily": "Weather forecast for the next days",
   "historical": "Weather data of the past five days",
-  "whereAreYou": "Where are you?"
+  "whereAreYou": "Where are you?",
+  "loading": "Loading"
 }

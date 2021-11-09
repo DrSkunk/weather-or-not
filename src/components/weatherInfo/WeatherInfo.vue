@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
-    <div v-if="error" class="text-center">{{ error }}</div>
-    <div v-if="loading" class="text-center">loading</div>
+    <div v-if="error && !loading" class="text-center">{{ error }}</div>
+    <div v-if="loading" class="text-center">{{ $t("loading") }}</div>
     <WeatherInfoBig
       v-if="!loading && weatherInfo.current"
       :city="locationName"
@@ -104,8 +104,9 @@ export default {
           loading.value = true;
           const data = await getWeatherForecast(store.getters.location);
           weatherInfo.value = data;
+          error.value = null;
         } catch (err) {
-          error.value = err;
+          error.value = err.message;
         }
         loading.value = false;
       }

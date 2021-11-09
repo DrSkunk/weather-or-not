@@ -10,12 +10,12 @@
     :wind-speed="forecast.windSpeed"
     :beaufort="forecast.beaufort"
   />
-  <div v-if="error">{{ error }}</div>
+  <div v-if="error && !loading">{{ error }}</div>
   <div
     v-if="loading"
     class="w-full h-20 lg:w-36 lg:h-72 flex justify-center items-center"
   >
-    loading
+    {{ $t("loading") }}
   </div>
 </template>
 
@@ -52,8 +52,9 @@ export default {
       try {
         const data = await getHistoricalWeatherForecast(day, location);
         forecast.value = data;
+        error.value = null;
       } catch (err) {
-        error.value = err;
+        error.value = err.message;
       }
       loading.value = false;
     });
