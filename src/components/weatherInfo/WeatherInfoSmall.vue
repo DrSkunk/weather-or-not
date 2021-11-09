@@ -4,7 +4,7 @@
       <div class="text-xl">{{ $d(day, "dayShort") }}</div>
       <div class="text-md">{{ description }}</div>
     </div>
-    <div class="w-24">
+    <div class="w-24 mx-auto">
       <WeatherIcon :icon="icon" :description="description" />
     </div>
     <div class="flex-1">
