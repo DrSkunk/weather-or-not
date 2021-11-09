@@ -18,7 +18,8 @@
   </button>
 </template>
 <script>
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
+import { ref } from "@vue/reactivity";
 import { LocationMarkerIcon } from "@heroicons/vue/solid";
 import { setUserLocationFromBrowser } from "../api/location";
 

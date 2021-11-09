@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from "vue";
+import { onMounted } from "vue";
+import { ref, computed } from "@vue/reactivity";
 import { useStore } from "vuex";
 import { getNameFromPosition } from "../api/location";
 import mapboxgl from "mapbox-gl";

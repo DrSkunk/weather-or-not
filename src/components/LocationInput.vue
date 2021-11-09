@@ -13,7 +13,9 @@
     >
       <SearchIcon class="w-5 left-4 text-gray-500 absolute" />
       <input
+        ref="input"
         v-model="locationNameInput"
+        tabindex="-1"
         type="text"
         class="
           w-full
@@ -64,7 +66,8 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { onMounted } from "vue";
+import { computed, ref } from "@vue/reactivity";
 import { useStore } from "vuex";
 import { SearchIcon } from "@heroicons/vue/solid";
 import { search } from "../api/location";
@@ -78,9 +81,14 @@ export default {
   components: { SearchIcon },
   setup() {
     const store = useStore();
+    const input = ref(null);
+    onMounted(() => {
+      input.value.focus();
+    });
     return {
       location: computed(() => store.state.location),
       locationName: computed(() => store.state.locationName),
+      input,
     };
   },
 
