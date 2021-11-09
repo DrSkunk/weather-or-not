@@ -10,6 +10,8 @@ const datetimeFormats = {
     },
     dayShort: {
       weekday: "short",
+      month: "short",
+      day: "numeric",
     },
     short: {
       year: "numeric",
@@ -30,6 +32,8 @@ const datetimeFormats = {
     },
     dayShort: {
       weekday: "short",
+      month: "short",
+      day: "numeric",
     },
     short: {
       year: "numeric",
