@@ -1,7 +1,9 @@
 <template>
   <div class="w-full">
     <div v-if="error && !loading" class="text-center">{{ error }}</div>
-    <div v-if="loading" class="text-center">{{ $t("loading") }}</div>
+    <div v-if="loading" class="flex justify-center items-center text-xl h-44">
+      {{ $t("loading") }}
+    </div>
     <WeatherInfoBig
       v-if="!loading && weatherInfo.current"
       :city="locationName"
