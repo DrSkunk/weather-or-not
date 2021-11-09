@@ -1,20 +1,30 @@
 <template>
-  <label
-    :class="[
-      'flex h-12 items-center hover:bg-gray-200 cursor-pointer rounded',
-      selectedValue === value ? 'bg-gray-100' : 'bg-gray-50',
-    ]"
-  >
-    <input type="radio" class="hidden" :value="value" @click="onClick(value)" />
-    <span class="sr-only" v-text="value" />
-    <slot />
-  </label>
+  <div class="cursor-pointer rounded bg-gray-100 pointer">
+    <label
+      :class="[
+        'h-12 inline-flex items-center hover:bg-gray-200 transition hover:translate-x-1 hover:-translate-y-1 cursor-pointer rounded pl-4 pr-2',
+      ]"
+    >
+      <input
+        type="radio"
+        class=""
+        :name="name"
+        :value="value"
+        @click="onClick(value)"
+      />
+      <slot />
+    </label>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
     selectedValue: {
+      type: String,
+      required: true,
+    },
+    name: {
       type: String,
       required: true,
     },

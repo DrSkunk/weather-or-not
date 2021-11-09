@@ -6,6 +6,7 @@
       :value="locale"
       :selected-value="$root.$i18n.locale"
       :on-click="changeLocale"
+      name="language"
     >
       <div class="px-2">{{ languages[locale] }}</div>
     </RadioInput>

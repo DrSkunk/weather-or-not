@@ -4,12 +4,14 @@
       :selected-value="selectedScale"
       :value="temperatureScale.CELSIUS"
       :on-click="setScale"
+      name="temperature-scale"
       ><IconCelsius class="w-12" />
     </RadioInput>
     <RadioInput
       :selected-value="selectedScale"
       :value="temperatureScale.FAHRENHEIT"
       :on-click="setScale"
+      name="temperature-scale"
       ><IconFahrenheit class="w-12" />
     </RadioInput>
   </div>

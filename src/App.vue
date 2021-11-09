@@ -1,6 +1,15 @@
 <template>
   <div class="container mx-auto pt-4">
-    <header class="flex just justify-between px-2 sm:px-0">
+    <header
+      class="
+        flex flex-wrap
+        justify-center
+        sm:justify-between
+        gap-2
+        px-2
+        sm:px-0
+      "
+    >
       <LanguageSelector />
       <TemperatureScale />
     </header>

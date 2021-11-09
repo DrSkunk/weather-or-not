@@ -11,6 +11,7 @@
   "dependencies": {
     "@bybas/weather-icons": "^2.0.0",
     "@heroicons/vue": "^1.0.5",
+    "@tailwindcss/forms": "^0.3.4",
     "axios": "^0.24.0",
     "date-fns": "^2.25.0",
     "mapbox-gl": "^2.5.1",
