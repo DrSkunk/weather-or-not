@@ -5,7 +5,7 @@
       :key="locale"
       :value="locale"
       :selected-value="$root.$i18n.locale"
-      :on-click="changeLanguage"
+      :on-click="changeLocale"
     >
       <div class="px-2">{{ languages[locale] }}</div>
     </RadioInput>
@@ -21,13 +21,18 @@ export default {
     RadioInput,
   },
   data() {
+    const locale = localStorage.getItem("locale");
+    if (locale) {
+      this.$root.$i18n.locale = locale;
+    }
     return {
       languages,
     };
   },
   methods: {
-    changeLanguage(language) {
-      this.$root.$i18n.locale = language;
+    changeLocale(locale) {
+      localStorage.setItem("locale", locale);
+      this.$root.$i18n.locale = locale;
     },
   },
 };

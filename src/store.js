@@ -7,7 +7,6 @@ const state = {
     latitude: null,
   },
   locationName: "",
-  locale: "en",
   temperatureScale: temperatureScale.CELSIUS,
 };
 
@@ -30,6 +29,10 @@ const actions = {
 };
 
 const mutations = {
+  initialiseStore(store) {
+    store.temperatureScale =
+      localStorage.getItem("temperatureScale") || state.temperatureScale;
+  },
   setLocation: (state, location) => {
     state.location = location;
   },
@@ -38,6 +41,7 @@ const mutations = {
   },
   setTemperatureScale: (state, temperatureScale) => {
     state.temperatureScale = temperatureScale;
+    localStorage.setItem("temperatureScale", temperatureScale);
   },
 };
 

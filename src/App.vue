@@ -19,6 +19,7 @@ import LocationMap from "./components/LocationMap.vue";
 import LanguageSelector from "./components/LanguageSelector.vue";
 import TemperatureScale from "./components/TemperatureScale.vue";
 import { setUserLocationFromIp } from "./api/location";
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -30,6 +31,10 @@ export default {
   },
   setup() {
     setUserLocationFromIp();
+  },
+  created() {
+    const store = useStore();
+    store.commit("initialiseStore");
   },
 };
 </script>
